@@ -3,9 +3,12 @@
 (~path ++ "/CK_environment.scd").load;
 
 // hello world (various versions)
-(~path ++ "/CodeKlavier_hello_world_nkk.scd").load;
-(~path ++ "/CodeKlavier_hello_world_v_RTP.scd").load;
-(~path ++ "/CodeKlavier_hello_world_v_sampler.scd").load;
+(~path ++ "/CodeKlavier_hello_world_nkk.scd").load; // installation version
+(~path ++ "/CodeKlavier_hello_world_v_RTP.scd").load; // when controlling external instrument (RTP)
+(~path ++ "/CodeKlavier_hello_world_v_sampler.scd").load; // normal sampler (RTP replica)
+(~path ++ "/CodeKlavier_hello_world_v_fx.scd").load; // with FX (SHA)
+(~path ++ "/CodeKlavier_hello_world_v_no_controlPedal.scd").load; // if missing CC messages in Sustain Pedal
+(~path ++ "/CodeKlavier_hello_world_v_Huygens.scd").load; // special samples based on Air De Cour
 {2.do{(~path ++ "/toypiano_sampler.scd").load; 2.wait}}.fork;
 
 // mottipets:
@@ -15,11 +18,15 @@
 //////////// ⬇
 
 
-~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
-\midinote, Pseq(["d3".namemidi, "B2".namemidi, "g3".namemidi, "g3".namemidi,
-"a3".namemidi, "g3".namemidi, "b3".namemidi, "c#4".namemidi, "d4".namemidi, "a3".namemidi,
-"b3".namemidi, "a3".namemidi, "g3".namemidi, "f#3".namemidi, "e3".namemidi, "d3".namemidi], inf),
-\type, \midi, \midiout, m)});
 
-~ost.play;
-~hello.play
+
+~dn
+
+
+
+~down2=1
+~ost.stop
+
+~hello.stop
+~hello2.stop
+~hello3.stop
