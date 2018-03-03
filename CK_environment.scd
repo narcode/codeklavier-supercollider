@@ -2,7 +2,7 @@
 
 // load Huygens sample
 ~path = thisProcess.nowExecutingPath.dirname;
-b = Buffer.read(s, ~path++"/Samples/huygens.wav");
+~hugbuf = Buffer.read(s, ~path++"/Samples/huygens.wav");
 "Huygens sample loaded...".postln;
 
 ~stop = Environment[
@@ -24,10 +24,10 @@ SkipJack.stop("pedalwatch");
 
 ~huygens = Environment[
 'stuk' -> {|self, chunk|
-Ndef(\huyg, {FreeVerb.ar(4*PlayBuf.ar(2, b, startPos: BufFrames.kr(b)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, 2)), 0.5, 0.95)}).play([0,1].choose,1);
+Ndef(\huyg, {FreeVerb.ar(4*PlayBuf.ar(2, ~hugbuf, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, 2.rrand(5))), 0.5, 0.95)}).play([0,1].choose,1);
 },
 'eind' -> {|self|
-    Ndef(\huyg, {FreeVerb.ar(FreqShift.ar(PlayBuf.ar(2, b, startPos: 0).sum, LFNoise1.kr([4, 1]).range(-10, 10)*Line.kr(1,0,6)), Line.kr(1, 0.1, 16), 1)*EnvGen.kr(Env.linen(0.01, 22, 15.5))}).play([0,1].choose,1);
+    Ndef(\huyg, {FreeVerb.ar(FreqShift.ar(PlayBuf.ar(2, ~hugbuf, startPos: 0).sum, LFNoise1.kr([4, 1]).range(-10, 10)*Line.kr(1,0,6)), Line.kr(1, 0.1, 16), 1)*EnvGen.kr(Env.linen(0.01, 22, 15.5))}).play([0,1].choose,1);
 }
 ];
 
