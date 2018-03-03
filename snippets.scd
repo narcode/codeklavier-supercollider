@@ -54,12 +54,7 @@ Tdef(\listenerkr, {
     0.08.wait;
     }
 }).play;
-s.sync;
-// load Huygens sample
-~path = thisProcess.nowExecutingPath.dirname;
-b = Buffer.read(s, ~path++"/Samples/huygens.wav");
-s.sync;
-"Huygens sample loaded...".postln;
+
 s.sync;
 "mottipets ready!...".postln;
 });

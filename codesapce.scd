@@ -1,5 +1,6 @@
  // universal
 ~path = thisProcess.nowExecutingPath.dirname
+(~path ++ "/CK_environment.scd").load;
 
 // hello world Nacht van Kunst en Kennis
 (~path ++ "/CodeKlavier_hello_world_nkk.scd").load;
@@ -7,5 +8,6 @@
 
 // mottipets:
 (~path ++ "/snippets.scd").load;
+
 
 //////////// ⬇
