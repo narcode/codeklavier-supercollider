@@ -24,7 +24,7 @@ SkipJack.stop("pedalwatch");
 
 ~huygens = Environment[
 'stuk' -> {|self, chunk|
-Ndef(\huyg, {FreeVerb.ar(4*PlayBuf.ar(2, ~hugbuf, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, 2.rrand(9))), 0.5, 0.95)}).play([0,1].choose,1);
+Ndef(\huyg, {FreeVerb.ar(4*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, 1.rrand(3))), 0.5, 0.95)}).play([0,1].choose,1);
 },
 'eind' -> {|self|
     Ndef(\huyg, {FreeVerb.ar(FreqShift.ar(PlayBuf.ar(2, ~hugbuf, startPos: 0).sum, LFNoise1.kr([4, 1]).range(-10, 10)*Line.kr(1,0,6)), Line.kr(1, 0.1, 20), 1)}).play([0,1].choose,1);
