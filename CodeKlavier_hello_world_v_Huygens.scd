@@ -23,13 +23,13 @@ s.sync;
 "b3".namemidi, "a3".namemidi, "g3".namemidi, "f#3".namemidi, "e3".namemidi, "d3".namemidi], inf),
 \type, \midi, \midiout, m)});
 ~ost.quant=~quant;
-~ost1=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/w}, 1), Pfuncn({1/o},1), Pfuncn({1/r},1)], inf), \ctranspose, Pfunc{~pitch},
+~ost1=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/w}, 1), Pfuncn({1/o},1), Pfuncn({1/r},1)], inf), \ctranspose, Pfunc{~pitch1},
 \midinote, Pseq(["d3".namemidi, "B2".namemidi, "g3".namemidi, "g3".namemidi,
 "a3".namemidi, "g3".namemidi, "b3".namemidi, "c#4".namemidi, "d4".namemidi, "a3".namemidi,
 "b3".namemidi, "a3".namemidi, "g3".namemidi, "f#3".namemidi, "e3".namemidi, "d3".namemidi], inf),
 \type, \midi, \midiout, m)});
 ~ost1.quant=~quant;
-~ost2=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/a}, 1), Pfuncn({1/n},1), Pfuncn({1/d},1)], inf), \ctranspose, Pfunc{~pitch},
+~ost2=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/a}, 1), Pfuncn({1/n},1), Pfuncn({1/d},1)], inf), \ctranspose, Pfunc{~pitch2},
 \midinote, Pseq(["d3".namemidi, "B2".namemidi, "g3".namemidi, "g3".namemidi,
 "a3".namemidi, "g3".namemidi, "b3".namemidi, "c#4".namemidi, "d4".namemidi, "a3".namemidi,
 "b3".namemidi, "a3".namemidi, "g3".namemidi, "f#3".namemidi, "e3".namemidi, "d3".namemidi], inf),
@@ -72,12 +72,12 @@ s.sync;
 	"a3".namemidi, "g3".namemidi, "b3".namemidi, "c#4".namemidi, "d4".namemidi, "a3".namemidi,
 	"b3".namemidi, "a3".namemidi, "g3".namemidi, "f#3".namemidi, "e3".namemidi, "d3".namemidi], inf),
 	\type, \midi, \midiout, m)});
-	~ost1=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/w}, 1), Pfuncn({1/o},1), Pfuncn({1/r},1)], inf), \ctranspose, Pfunc{~pitch},
+	~ost1=Pdef(\ostinato2, {Pbind(\dur, Pseq([Pfuncn({1/w}, 1), Pfuncn({1/o},1), Pfuncn({1/r},1)], inf), \ctranspose, Pfunc{~pitch1},
 	\midinote, Pseq(["d3".namemidi, "B2".namemidi, "g3".namemidi, "g3".namemidi,
 	"a3".namemidi, "g3".namemidi, "b3".namemidi, "c#4".namemidi, "d4".namemidi, "a3".namemidi,
 	"b3".namemidi, "a3".namemidi, "g3".namemidi, "f#3".namemidi, "e3".namemidi, "d3".namemidi], inf),
 	\type, \midi, \midiout, m)});
-	~ost2=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/a}, 1), Pfuncn({1/n},1), Pfuncn({1/d},1)], inf), \ctranspose, Pfunc{~pitch},
+	~ost2=Pdef(\ostinato3, {Pbind(\dur, Pseq([Pfuncn({1/a}, 1), Pfuncn({1/n},1), Pfuncn({1/d},1)], inf), \ctranspose, Pfunc{~pitch2},
 	\midinote, Pseq(["d3".namemidi, "B2".namemidi, "g3".namemidi, "g3".namemidi,
 	"a3".namemidi, "g3".namemidi, "b3".namemidi, "c#4".namemidi, "d4".namemidi, "a3".namemidi,
 	"b3".namemidi, "a3".namemidi, "g3".namemidi, "f#3".namemidi, "e3".namemidi, "d3".namemidi], inf),
