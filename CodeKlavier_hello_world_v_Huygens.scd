@@ -160,7 +160,7 @@ MIDIdef.cc(\pedalpitchop2).free;
 	};
 
 	if (~down == 1) {
-		("down ---> running").postln;
+		// ("down ---> running").postln;
 		MIDIdef.cc(\pedalpitchd, {arg ...args;
 			if (args[1] == 64) {
 				~pitch = args[0].linlin(0, 127, 0, -7).round(1);
