@@ -32,7 +32,7 @@ Ndef(~names.next, {FreeVerb.ar(2*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, st
 ~sustain = ~sustain*1.1;
 },
 'eind' -> {|self|
-    Ndef.all.do{|n| n.stop(20.rrand(24))};
+    Ndef.all.do{|n| n.stop(23.rrand(25))};
     Ndef(\huyg, {FreeVerb.ar(FreqShift.ar(PlayBuf.ar(2, ~hugbuf2, startPos: 0).sum, LFNoise1.kr([4, 1]).range(-10, 10)*Line.kr(1,0,6)), Line.kr(1, 0.1, 20), 1)}).play([0,1].choose,1);
 }
 ];
