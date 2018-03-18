@@ -19,6 +19,7 @@ SkipJack.stop("pedalwatch");
 ~ost2.stop;
 ~down=0;~down1=0;~down2=0;
 ~op=0;~op1=0;~op2=0;
+t.tempo = 1;
 }
 ];
 
