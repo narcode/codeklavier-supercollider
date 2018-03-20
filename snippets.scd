@@ -6,8 +6,8 @@ snippets for Mottipets
 s.waitForBoot({
 	"starting server...".postln;
 
-t = TempoClock.default;
-t.tempo = 20/60;
+~ts = TempoClock.new();
+~ts.tempo = 20/60;
 s.sync;
 // snippet 1: beat
 /*r = ();*/
@@ -53,7 +53,7 @@ Tdef(\listenerkr, {
 
     0.08.wait;
     }
-}).play;
+}).play(~ts);
 
 s.sync;
 "mottipets ready!...".postln;
