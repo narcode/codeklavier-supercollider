@@ -20,6 +20,7 @@ s.sync;
 
 ~srcid = -1869464304; // annerob: 1151127154 felipe 1429867122 anne -1869464304
 ~sampleramp = 0.5;
+~samplerampfx = 0.5;
 
 // sampler node:
 MIDIdef.noteOn(\toypiano, {arg ...args;
@@ -27,7 +28,7 @@ MIDIdef.noteOn(\toypiano, {arg ...args;
   // args.postln;
   //midinote.postln;
 if (midinote < 64 && midinote >= 0) {
-  Ndef(midinote.asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(6, group: g);
+  Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(6, group: g);
   Ndef((midinote.asString++"d0").asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
     }
   }, chan: 0, srcID: ~srcid);
@@ -38,7 +39,7 @@ if (midinote < 64 && midinote >= 0) {
     /*args.postln;*/
     //midinote.postln;
   if (midinote < 64 && midinote >= 0) {
-    Ndef(midinote.asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(20, group: g);
+    Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(20, group: g);
     Ndef((midinote.asString++"d1").asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
       }
     }, chan: 1, srcID: ~srcid); // 1151127154
@@ -52,7 +53,7 @@ if (midinote < 64 && midinote >= 0) {
         //midinote.postln;
 
       if (midinote < 64 && midinote >= 0) {
-        Ndef(midinote.asSymbol, {PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(4, group: g);
+        Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(4, group: g);
         Ndef(duplicate.asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
           }
         }, chan: 2, srcID: ~srcid); // 1151127154
