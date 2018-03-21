@@ -21,6 +21,7 @@ SkipJack.stop("pedalwatch");
 ~op=0;~op1=0;~op2=0;
 t.tempo = 1;
 SkipJack.stop("pedalwatch");
+(~path ++ "/snippets.scd").load;
 }
 ];
 
