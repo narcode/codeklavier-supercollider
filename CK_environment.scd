@@ -10,7 +10,6 @@
 ~stop = Environment[
 'now' -> {|self|
 "stopping".postln;
-SkipJack.stop("pedalwatch");
 ~hello.stop;
 ~hello2.stop;
 ~hello3.stop;
@@ -20,9 +19,13 @@ SkipJack.stop("pedalwatch");
 ~down=0;~down1=0;~down2=0;
 ~op=0;~op1=0;~op2=0;
 t.tempo = 1;
-SkipJack.stop("pedalwatch");
 (~path ++ "/snippets.scd").load;
 (~path ++ "/CK_environment.scd").load;
+{
+1.wait;
+SkipJack.stopAll;
+"pedal watch stopped".postln;
+}.fork;
 }
 ];
 
@@ -39,6 +42,7 @@ Ndef(~names.next, {FreeVerb.ar(2.5*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, 
     Ndef(\huyg, {FreeVerb.ar(FreqShift.ar(PlayBuf.ar(2, ~hugbuf2, startPos: 0).sum, LFNoise1.kr([4, 1]).range(-10, 10)*Line.kr(1,0,6)), Line.kr(1, 0.1, 20), 1)}).play([0,1].choose,1);
     ~snippet2.stop;
     ~snippet1.stop;
+    ~stop.now;
 }
 ];
 

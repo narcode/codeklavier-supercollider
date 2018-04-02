@@ -18,7 +18,7 @@ s.sync;
 };
 s.sync;
 
-~srcid = -1869464304; // annerob: 1151127154 felipe 1429867122 anne -1869464304
+~srcid = 1429867122; // annerob: 1151127154 felipe 1429867122 anne -1869464304
 ~sampleramp = 0.5;
 ~samplerampfx = 0.5;
 
@@ -68,6 +68,16 @@ if (midinote < 64 && midinote >= 0) {
             Ndef(midinote.asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
               }
             }, chan: 3, srcID: ~srcid); // 1151127154
+
+// ostinatos:
+MIDIdef.noteOn(\toypiano_ost, {arg ...args;
+  var midinote = args[1]-56;
+  // args.postln;
+  //midinote.postln;
+if (midinote < 64 && midinote >= 0) {
+  Ndef((midinote.asString++"ost").asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
+    }
+  }, chan: 4, srcID: ~srcid);
 
 
 s.sync;
