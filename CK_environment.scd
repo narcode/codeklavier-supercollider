@@ -62,3 +62,9 @@ OSCdef(\ck, {|msg, time, addr, recvPort|
 var freq_offset = msg.asFloat;
 Ndef(\gong, {FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789]))*EnvGen.kr(Env.perc), 0.5, 0.95)}).play;
 }, '/gong');
+
+OSCdef(\ck, {|msg, time, addr, recvPort|
+var chunk = msg.asFloat;
+Ndef(~names.next, {FreeVerb.ar(2.5*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, ~sustain)), 0.5, 0.95)}).play([0,1].choose,1);
+~sustain = ~sustain*1.1;
+}, '/huygens');
