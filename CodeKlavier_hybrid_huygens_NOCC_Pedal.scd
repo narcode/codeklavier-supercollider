@@ -239,7 +239,7 @@ s.sync;
 	// MIDIdef.cc(\pedalpitchd2).free;
 	Tdef(\iclcP2).stop;
 		};
-	}; }, 0.2, name: "pedalwatch");-
+	}; }, 0.2, name: "pedalwatch");
 	);
 	s.sync;
 	"CodeKlavier is ready and listening...".postln;
