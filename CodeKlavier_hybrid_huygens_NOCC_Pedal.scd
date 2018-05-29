@@ -191,7 +191,6 @@ s.sync;
 		};
 
 		if (~down == 1) {
-			("down ---> running").postln;
 			// MIDIdef.cc(\pedalpitchd, {arg ...args;
 			// 	if (args[1] == 64 && args[2] == 127) {
 			if (~pedalpressed == true) {
