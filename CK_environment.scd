@@ -1,7 +1,7 @@
 // CodeKlavier Environment
 
 // tempo by default
-t=TempoClock.default
+t=TempoClock.default;
 
 // load Huygens sample
 ~path = thisProcess.nowExecutingPath.dirname;
