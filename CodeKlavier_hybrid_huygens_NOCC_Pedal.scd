@@ -1,7 +1,7 @@
 // midi mappings:
 s.waitForBoot({
-	"starting MIDI...".postln;
-	MIDIIn.connectAll;
+"starting MIDI...".postln;
+MIDIIn.connectAll;
 s.sync;
 MIDIClient.init;
 s.sync;
@@ -98,10 +98,21 @@ s.sync;
 ~del=1;~del2=1;~del3=3;
 ~r3=1;
 	);
+
 	(
 	"variables for no CC Pedal".postln;
 	~semitonesup = Pseq([1,2,3,4,5,6,7,8,9,10,9,8,7,6,5,4,3,2,1,0], inf).asStream;
 	~semitonesd = Pseq([1,2,3,4,5,4,3,2,1,0]*(-1), inf).asStream;
+
+	// pedal:
+	MIDIdef.cc(\noCC, {|msg|
+		if (msg == 127) {
+		~pedalpressed = true;
+		} {
+		~pedalpressed = false;
+		}
+	}, 64);
+
 	);
 
 	(
@@ -134,8 +145,10 @@ s.sync;
 
 			// MIDIdef.cc(\pedalpitch, {arg ...args;
 				// if (args[1] == 64 && args[2] == 127) {
+					if (~pedalpressed == true) {
 					~pitch = ~semitonesup.next;
 					("ostinato ***" + ~pitch + " semitones up").postln;
+					};
 				// }
 			// });
 		};
@@ -148,8 +161,10 @@ s.sync;
 		if (~op1 == 1) {
 			// MIDIdef.cc(\pedalpitchop1, {arg ...args;
 				// if (args[1] == 64 && args[2] == 127) {
+				if (~pedalpressed == true) {
 					~pitch1 = ~semitonesup.next;
 					("ostinato1 ***" + ~pitch1 + " semitones up").postln;
+						};
 				// }
 			// });
 		};
@@ -162,8 +177,8 @@ s.sync;
 		if (~op2 == 1) {
 			// MIDIdef.cc(\pedalpitchop2, {arg ...args;
 				// if (args[1] == 64 && args[2] == 127) {
-
-					~pitch2 = ~semitonesup.next;
+				if (~pedalpressed == true) {
+					~pitch2 = ~semitonesup.next; };
 					("ostinato2 ***" + ~pitch2 + " semitones up").postln;
 
 			// 	}
@@ -179,10 +194,10 @@ s.sync;
 			("down ---> running").postln;
 			// MIDIdef.cc(\pedalpitchd, {arg ...args;
 			// 	if (args[1] == 64 && args[2] == 127) {
-
+			if (~pedalpressed == true) {
 					~pitch = ~semitonesd.next;
 					("ostinato ***" + ~pitch + " semitones down").postln;
-
+				};
 			// 	}
 			// });
 		};
@@ -196,10 +211,10 @@ s.sync;
 		if (~down1 == 1) {
 			// MIDIdef.cc(\pedalpitchd1, {arg ...args;
 			// 	if (args[1] == 64 && args[2] == 127) {
-
+			if (~pedalpressed == true) {
 					~pitch1 = ~semitonesd.next;
 					("ostinato ***" + ~pitch1 + " semitones down").postln;
-
+				};
 			// 	}
 			// });
 		};
@@ -212,10 +227,10 @@ s.sync;
 		if (~down2 == 1) {
 			// MIDIdef.cc(\pedalpitchd2, {arg ...args;
 			// 	if (args[1] == 64 && args[2] == 127) {
-
+			if (~pedalpressed == true) {
 					~pitch2 = ~semitonesd.next;
 					("ostinato2 ***" + ~pitch2 + " semitones down").postln;
-
+				};
 			// 	}
 			// });
 		};
@@ -224,12 +239,16 @@ s.sync;
 	// MIDIdef.cc(\pedalpitchd2).free;
 	Tdef(\iclcP2).stop;
 		};
-	}; }, 0.2, name: "pedalwatch");
+	}; }, 0.2, name: "pedalwatch");-
 	);
 	s.sync;
 	"CodeKlavier is ready and listening...".postln;
 	}.fork;
 	);
 
-/// if you want to stop the pedal watcher:
-/*SkipJack.stop("pedalwatch");*/
+/*
+if you want to stop the pedal watcher:
+
+SkipJack.stop("pedalwatch");
+
+*/
