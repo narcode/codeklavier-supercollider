@@ -1,5 +1,8 @@
 // CodeKlavier Environment
 
+// tempo by default
+t=TempoClock.default
+
 // load Huygens sample
 ~path = thisProcess.nowExecutingPath.dirname;
 ~hugbuf = Buffer.read(s, ~path++"/Samples/huygens.wav");

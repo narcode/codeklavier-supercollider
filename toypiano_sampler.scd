@@ -12,13 +12,13 @@ b = ();
 g = Group.new(s, \addToHead);
 ~pathsamples = thisProcess.nowExecutingPath.dirname;
 s.sync;
-29.do{|i|
+32.do{|i|
   ~num = 36 + i;
   b[i] = Buffer.read(s, ~pathsamples++"/TPSamples/"++~num++".wav");
 };
 s.sync;
 
-~srcid = -1869464304; // annerob: 1151127154 felipe 1429867122 anne -1869464304
+~srcid = 1429867122; // annerob: 1151127154 felipe 1429867122 anne -1869464304
 ~sampleramp = 0.5;
 ~samplerampfx = 0.5;
 
