@@ -9,7 +9,7 @@ MIDIIn.connectAll;
 s.sync;
 m = MIDIOut.newByName("IAC Driver", "Bus 1");
 s.sync;
-// hello world \\
+// worm world \\
 (
 "setting variables and ostinatos...".postln;
 ~pitch = 0;~pitch1 = 0;~pitch2 = 0; ~pulsepitch = 0;
@@ -55,25 +55,24 @@ s.sync;
 ~clock2.quant=~quant;
 ~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d#5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock3.quant=~quant;
-// hello pulse
-~hello=Pdef(\hello, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
-~hello.quant=~quant;
-~hello2=Pdef(\hello2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h2o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 1)});
-~hello2.quant=~quant;
-~hello3=Pdef(\hello3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~h3o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
-~hello3.quant=~quant;
+// worm pulse
+~worm=Pdef(\worm, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
+~worm.quant=~quant;
+~worm2=Pdef(\worm2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p2o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 1)});
+~worm2.quant=~quant;
+~worm3=Pdef(\worm3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p3o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
+~worm3.quant=~quant;
 s.sync;
-~hello2.quant=~quant;
-~h1o=~h2o=~h3o=0;
+~worm2.quant=~quant;
+~p1o=~p2o=~p3o=0;
 s.sync;
 h=e=l=o=w=d=a=r=n=1;
-~p = 1; // ????
 s.sync;
 ~reset = Tdef(\reset, {1.do{h=e=l=o=w=d=a=r=n=1; t.tempo=1;
 	~eamp=0;~eamp2=0;~eamp3=0;
 	~del=1;~del2=1;~del3=3;
 	~r3=1;
-	~h1o=~h2o=~h30=0;
+	~p1o=~p2o=~h30=0;
 	~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
 	\midinote, Pseq(["d3".namemidi, "B2".namemidi, "g3".namemidi, "g3".namemidi,
 	"a3".namemidi, "g3".namemidi, "b3".namemidi, "c#4".namemidi, "d4".namemidi, "a3".namemidi,

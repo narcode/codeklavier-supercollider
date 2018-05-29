@@ -3,7 +3,7 @@
 (~path ++ "/CK_environment.scd").load;
 s.meter.window.alwaysOnTop_(true)
 
-(~path ++ "/CodeKlavier_hybrid_huygens.scd").load; // special samples based on Air De Cour
+(~path ++ "/CodeKlavier_hybrid_huygens_NOCC_Pedal.scd").load; // special samples based on Air De Cour
 
 
 // load the sampler:
@@ -11,3 +11,5 @@ s.meter.window.alwaysOnTop_(true)
 
 // mottipets:
 (~path ++ "/snippets.scd").load;
+
+//// codespace \\\\

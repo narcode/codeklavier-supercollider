@@ -19,8 +19,8 @@ s.sync;
 s.sync;
 
 ~srcid = 1429867122; // annerob: 1151127154 felipe 1429867122 anne -1869464304
-~sampleramp = 0.5;
-~samplerampfx = 0.5;
+~sampleramp = 0.52;
+~samplerampfx = 0.52;
 
 // sampler node:
 MIDIdef.noteOn(\toypiano, {arg ...args;
