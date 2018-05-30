@@ -49,11 +49,11 @@ var randpitch = ["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "
 \type, \midi, \midiout, m)})});
 s.sync;
 //clocks
-~clock=Pdef(\clock, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c#5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
+~clock=Pdef(\clock, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock.quant=~quant;
-~clock2=Pdef(\clock2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
+~clock2=Pdef(\clock2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c#5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock2.quant=~quant;
-~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d#5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
+~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock3.quant=~quant;
 // worm pulse
 ~worm=Pdef(\worm, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
