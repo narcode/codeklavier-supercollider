@@ -39,7 +39,7 @@ if (midinote < 64 && midinote >= 0) {
     /*args.postln;*/
     //midinote.postln;
   if (midinote < 64 && midinote >= 0) {
-    Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(20, group: g);
+    Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(22, group: g);
     Ndef((midinote.asString++"d1").asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
       }
     }, chan: 1, srcID: ~srcid); // 1151127154
@@ -53,7 +53,7 @@ if (midinote < 64 && midinote >= 0) {
         //midinote.postln;
 
       if (midinote < 64 && midinote >= 0) {
-        Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(4, group: g);
+        Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(6, group: g);
         Ndef(duplicate.asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
           }
         }, chan: 2, srcID: ~srcid); // 1151127154
@@ -87,9 +87,9 @@ s.sync;
 ~gtail = Group.new(s, \addToTail);
 Ndef(\fx, {|del=1, amp=0.001| CombN.ar(In.ar(6), 0.2, del.reciprocal, 4)*amp}).play(0, group: ~gtail);
 s.sync;
-Ndef(\fx1, {|del=1, amp=0.001| CombN.ar(In.ar(20), 0.2, del.reciprocal, 1)*amp}).play(1, group: ~gtail);
+Ndef(\fx1, {|del=1, amp=0.001| CombN.ar(In.ar(22), 0.2, del.reciprocal, 1)*amp}).play(1, group: ~gtail);
 s.sync;
-Ndef(\fx2, {|del=2, amp=0.001, rate=1| GVerb.ar(FreqShift.ar(In.ar(4), LFTri.kr(rate.reciprocal).range(8000, 100)), 62, del)*amp}).play(0,2, group: ~gtail);
+Ndef(\fx2, {|del=2, amp=0.001, rate=1| GVerb.ar(FreqShift.ar(In.ar(6), LFTri.kr(rate.reciprocal).range(8000, 100)), 62, del)*amp}).play(0,2, group: ~gtail);
 s.sync;
 "fx ready!".postln;
 }.fork;

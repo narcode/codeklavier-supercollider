@@ -68,7 +68,7 @@ s.sync;
 	~eamp=0;~eamp2=0;~eamp3=0;
 	~del=1;~del2=1;~del3=3;
 	~r3=1;
-	~p1o=~p2o=~h30=0;
+	~p1o=~p2o=~p3o=0;
 	~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
 	\midinote, Pseq(["d3".namemidi, "B2".namemidi, "g3".namemidi, "g3".namemidi,
 	"a3".namemidi, "g3".namemidi, "b3".namemidi, "c#4".namemidi, "d4".namemidi, "a3".namemidi,
