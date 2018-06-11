@@ -13,9 +13,9 @@ t=TempoClock.default;
 ~stop = Environment[
 'now' -> {|self|
 "stopping".postln;
-~worm.stop;
-~worm2.stop;
-~worm3.stop;
+~hello.stop;
+~hello2.stop;
+~hello3.stop;
 ~clock.stop;
 ~clock2.stop;
 ~clock3.stop;
