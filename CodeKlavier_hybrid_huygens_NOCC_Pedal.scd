@@ -9,7 +9,7 @@ MIDIIn.connectAll;
 s.sync;
 m = MIDIOut.newByName("IAC Driver", "Bus 1");
 s.sync;
-// worm world \\
+// hello world \\
 (
 "setting variables and ostinatos...".postln;
 ~pitch = 0;~pitch1 = 0;~pitch2 = 0; ~pulsepitch = 0;
@@ -51,15 +51,15 @@ s.sync;
 ~clock2.quant=~quant;
 ~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock3.quant=~quant;
-// worm pulse
-~worm=Pdef(\worm, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
-~worm.quant=~quant;
-~worm2=Pdef(\worm2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p2o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 1)});
-~worm2.quant=~quant;
-~worm3=Pdef(\worm3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p3o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
-~worm3.quant=~quant;
+// hello pulse
+~hello=Pdef(\hello, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
+~hello.quant=~quant;
+~hello2=Pdef(\hello2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p2o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 1)});
+~hello2.quant=~quant;
+~hello3=Pdef(\hello3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p3o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
+~hello3.quant=~quant;
 s.sync;
-~worm2.quant=~quant;
+~hello2.quant=~quant;
 ~p1o=~p2o=~p3o=0;
 s.sync;
 h=e=l=o=w=d=a=r=n=1;
