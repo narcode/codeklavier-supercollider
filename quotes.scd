@@ -1,5 +1,6 @@
-~quotes = [];
+~quotes = ();
 
+<<<<<<< HEAD
 ~quotes[1] = "Give us access to the performer's mind, to the whole human instrument. (TOPLAP Manifesto)";
 ~quotes[2] = "Live coding may be accompanied by an impressive display of manual dexterity and the glorification of the typing interface. (TOPLAP Manifesto)";
 ~quotes[3] = "Present-day technology is striving to turn the machine into a human being (through the number and variety of operations it can perform), but it is sinful and stupid to turn man into a machine. (Neuhaus, “The Art of Piano Playing” 1993, p89 (written 1958))";
@@ -12,3 +13,12 @@
 ~quotes[10] = "Give us access to the performer's mind, to the whole human instrument.";
 ~quotes[11] = "Give us access to the performer's mind, to the whole human instrument.";
 ~quotes[12] = "Give us access to the performer's mind, to the whole human instrument.";
+=======
+~quotes[1] = "quote 1";
+~quotes[2] = "quote 2";
+~quotes[3] = "quote 3";
+~quotes[4] = "quote 4";
+~quotes[5] = "quote 5";
+~quotes[6] = "quote 6";
+~quotes[7] = "quote 7";
+>>>>>>> 8d24e8930a2c20fb4047e0e985aceb1a5ab002ac
