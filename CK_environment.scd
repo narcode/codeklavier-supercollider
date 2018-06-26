@@ -77,18 +77,18 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 
 // hidden gong evaluation:
 OSCdef(\ck_gong, {|msg, time, addr, recvPort|
-var freq_offset = msg.asFloat;
+var freq_offset = msg[1].asFloat;
 Ndef(\gong, {0.6*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789])).sum*EnvGen.kr(Env.perc), 0.5, 0.95)}).play;
 }, '/gong');
 
 OSCdef(\ck_huyg, {|msg, time, addr, recvPort|
-var chunk = msg.asFloat;
+var chunk = msg[1].asFloat;
 Ndef(~names.next, {FreeVerb.ar(2.5*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, ~sustain)), 0.5, 0.95)}).play([0,1].choose,1);
 ~sustain = ~sustain*1.1;
 }, '/huygens');
 
 OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
-    if (msg == "quote") {
+    if (msg[1] == 'text1') {
 	{~text.string_("You passed bravo!").font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
         } {
     {~text.string_(~quotes.choose).font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
