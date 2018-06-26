@@ -65,6 +65,7 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 		w.view.backgroundImage_(i).alwaysOnTop_(true);
 		t = StaticText(w, w.bounds.width@w.bounds.height);
 		w.front;
+		("open -a Atom").unixCmd;
 }
 ];
 
@@ -86,5 +87,9 @@ Ndef(~names.next, {FreeVerb.ar(2.5*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, 
 }, '/huygens');
 
 OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
-t.string_("You passed bravo!").font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));
+    if (msg[1] == 'text1') {
+	{~text.string_("You passed bravo!").font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
+        } {
+    {~text.string_(~quotes.choose).font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
+    }
 }, '/ck_pp');
