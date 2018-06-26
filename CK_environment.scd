@@ -58,13 +58,16 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 }
 ];
 
-~lp = Environment[
+~img = Environment[
 'load' -> {|name, height, width|
-
+		i = Image.new(~path++"/images/codeklavier1.png");
+		w = Window.new("ck presenter",500!4);
+		w.view.backgroundImage_(i);
+		w.front;
 }
 ];
 
-
+~img.know = true;
 ~stop.know = true;
 ~huygens.know = true;
 ~gong.know = true;
