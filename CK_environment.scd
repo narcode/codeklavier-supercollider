@@ -10,6 +10,8 @@ t=TempoClock.default;
 
 "Huygens samples loaded...".postln;
 
+(~path++"/quotes.scd").load;
+
 ~stop = Environment[
 'now' -> {|self|
 "stopping".postln;
@@ -61,13 +63,14 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 ~img = Environment[
 'load' -> {|name, height, width|
 		i = Image.new(~path++"/images/codeklavier1.png");
-		w = Window.new("ck presenter",500!4);
+		w = Window.new("ck presenter",[500, 391, 795, 587]);
 		w.view.backgroundImage_(i).alwaysOnTop_(true);
-		t = StaticText(w, w.bounds.width@w.bounds.height);
+		~text = StaticText(w, w.bounds.width@w.bounds.height);
 		w.front;
 		("open -a Atom").unixCmd;
 }
 ];
+
 
 ~img.know = true;
 ~stop.know = true;
@@ -90,6 +93,6 @@ OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
     if (msg[1] == 'text1') {
 	{~text.string_("You passed bravo!").font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
         } {
-    {~text.string_(~quotes.choose).font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
+    {~text.string_(~quotes.choose).font_(Font("Courier New", 39)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
     }
 }, '/ck_pp');
