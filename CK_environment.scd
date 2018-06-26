@@ -58,6 +58,12 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 }
 ];
 
+~lp = Environment[
+'load' -> {|name, height, width|
+
+}
+];
+
 
 ~stop.know = true;
 ~huygens.know = true;
