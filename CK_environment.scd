@@ -64,7 +64,7 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 'load' -> {|name, height, width|
 		// graphics:
 		~px = 0; ~py = 0; ~pthick=1; ~blue=0;
-        ~px1 = 0; ~py1 = 0; ~pthick=3; ~red=0;
+        ~px1 = 0; ~py1 = 0; ~red=0;
 		i = Image.new(~path++"/images/codeklavier1.png");
 		w = Window.new("ck presenter",[500, 391, 795, 587]);
 		v = UserView(w, w.view.bounds).clearOnRefresh_(false);
@@ -92,17 +92,6 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
      				Pen.stroke;
 
      		}; v.refresh}.defer;
-
-        // ~snake2 = {|coordx=0, coordy=0, thick=1, color=0|
-     	// 		v.drawFunc = {
-     	// 			Pen.moveTo(Point(~px2 , ~py2));
-     	// 			Pen.width = ~pthick2;
-     	// 	  Pen.strokeColor = Color.new(0.0, ~red, 1.0);
-        //  Pen.lineTo(Point(coordx, coordy));
-     	// 	  ~px2 = coordx; ~py2 = coordy; ~pthick2=thick; ~red=color;
-     	// 			Pen.stroke;
-        //
-     	// 	}; v.animate=true}.defer;
 
 		w.front;
 
