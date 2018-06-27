@@ -80,7 +80,18 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 		  ~px = coordx; ~py = coordy; ~pthick=thick; ~blue=color;
 				Pen.stroke;
 
-		}; v.animate=true}.defer;
+		}; v.refresh}.defer;
+
+        ~snake2 = {|coordx=0, coordy=0, thick=1, color=0|
+     			v.drawFunc = {
+     				Pen.moveTo(Point(~px1 , ~py1));
+     				Pen.width = ~pthick;
+     		  Pen.strokeColor = Color.new(0.0, ~red, 1.0);
+         Pen.lineTo(Point(coordx, coordy));
+     		  ~px1 = coordx; ~py1 = coordy; ~pthick=thick; ~red=color;
+     				Pen.stroke;
+
+     		}; v.refresh}.defer;
 
         // ~snake2 = {|coordx=0, coordy=0, thick=1, color=0|
      	// 		v.drawFunc = {
