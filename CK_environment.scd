@@ -58,7 +58,6 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 }
 ];
 
-
 ~stop.know = true;
 ~huygens.know = true;
 ~gong.know = true;

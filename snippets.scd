@@ -32,6 +32,7 @@ s.sync;
 ~ampacc= 0.4;
 ~map_rhythm = false;
 ~map_amplitude = false;
+~t = 1;
 s.sync;
 
 //loop listener? is there a better solution?
@@ -52,6 +53,15 @@ Tdef(\listenerkr, {
     Ndef(\krm2_2, {~tremoloL2.linlin(1, 16, 0, 1.5)}); // amp
     Ndef(\krm2_3, {~tremoloH2.linlin(1, 16, 0, 15)}); // fx
 
+// tempo
+
+	// if (~t != ~t) {
+	// Tdef(\tempochange, {
+	// 	var frame = Array.fill()
+	// 	t.tempo = ~t;
+	//
+	// 	}).play;
+	// }
 
     0.08.wait;
     }
