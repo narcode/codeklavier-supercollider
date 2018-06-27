@@ -62,13 +62,45 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 
 ~img = Environment[
 'load' -> {|name, height, width|
+		// graphics:
+		~px = 0; ~py = 0; ~pthick=1; ~blue=0;
+        ~px1 = 0; ~py1 = 0; ~pthick=3; ~red=0;
 		i = Image.new(~path++"/images/codeklavier1.png");
 		w = Window.new("ck presenter",[500, 391, 795, 587]);
+		v = UserView(w, w.view.bounds).clearOnRefresh_(false);
 		w.view.backgroundImage_(i).alwaysOnTop_(true);
 		~text = StaticText(w, w.bounds.width@w.bounds.height);
+
+   ~snake = {|coordx=0, coordy=0, thick=1, color=0|
+			v.drawFunc = {
+				Pen.moveTo(Point(~px , ~py));
+				Pen.width = ~pthick;
+		  Pen.strokeColor = Color.new(0.0, 1.0, ~blue);
+    Pen.lineTo(Point(coordx, coordy));
+		  ~px = coordx; ~py = coordy; ~pthick=thick; ~blue=color;
+				Pen.stroke;
+
+		}; v.animate=true}.defer;
+
+        // ~snake2 = {|coordx=0, coordy=0, thick=1, color=0|
+     	// 		v.drawFunc = {
+     	// 			Pen.moveTo(Point(~px2 , ~py2));
+     	// 			Pen.width = ~pthick2;
+     	// 	  Pen.strokeColor = Color.new(0.0, ~red, 1.0);
+        //  Pen.lineTo(Point(coordx, coordy));
+     	// 	  ~px2 = coordx; ~py2 = coordy; ~pthick2=thick; ~red=color;
+     	// 			Pen.stroke;
+        //
+     	// 	}; v.animate=true}.defer;
+
 		w.front;
+
 		("open -a Atom").unixCmd;
-}
+
+        // presenter:
+        (~path ++ "/pythonnets.scd").load;
+},
+	'new' -> {v.clearDrawing;}
 ];
 
 
@@ -92,7 +124,10 @@ Ndef(~names.next, {FreeVerb.ar(2.5*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, 
 OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
     if (msg[1] == 'text1') {
 	{~text.string_("You passed bravo!").font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
-        } {
+        };
+
+	if (msg[1] == 'quote') {
     {~text.string_(~quotes.choose).font_(Font("Courier New", 39)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
-    }
+    };
+
 }, '/ck_pp');
