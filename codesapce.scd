@@ -11,5 +11,3 @@ s.meter.window.alwaysOnTop_(true)
 
 
 //// codespace \\\\
-
-~img.load;
