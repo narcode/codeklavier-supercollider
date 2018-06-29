@@ -60,29 +60,50 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 }
 ];
 
+// images dictionary:
+		i = ();
+		i[0] = Image.new(~path++"/images/1.png");
+		i[1] = Image.new(~path++"/images/2.png");
+		i[2] = Image.new(~path++"/images/3.png");
+		i[3] = Image.new(~path++"/images/4.png");
+
+~slider = Pseq(i.atAll(i.order), inf).asStream;
+
+
 ~img = Environment[
 'load' -> {|name, height, width|
 		// graphics:
 		~px = 0; ~py = 0; ~pthick=1; ~blue=0;
         ~px1 = 0; ~py1 = 0; ~red=0;
-		i = Image.new(~path++"/images/codeklavier1.png");
-		w = Window.new("ck presenter",[500, 391, 795, 587]);
+		~image = ~slider.next;
+        if (w != nil) {w.close};
+        if (~image.width > 1000) {~offset = -200;} {~offset=0};
+		w = Window.new("ck presenter",[500+~offset, 391, ~image.width, ~image.height]);
 		v = UserView(w, w.view.bounds).clearOnRefresh_(false);
-		w.view.backgroundImage_(i).alwaysOnTop_(true);
+		w.view.backgroundImage_(~image).alwaysOnTop_(true);
 		~text = StaticText(w, w.bounds.width@w.bounds.height);
 
-   ~snake = {|coordx=0, coordy=0, thick=1, color=0|
+   ~snake = {|coordx=0, coordy=0, coordx2=0, coordy2=0, thick=1, color=0, color2=0|
 			v.drawFunc = {
-				Pen.moveTo(Point(~px , ~py));
-				Pen.width = ~pthick;
-		  Pen.strokeColor = Color.new(0.0, 1.0, ~blue);
-    Pen.lineTo(Point(coordx, coordy));
+				~p1 = Pen;
+				~p1.moveTo(Point(~px , ~py));
+				~p1.width = ~pthick;
+		  ~p1.strokeColor = Color.new(0.0, 1.0, ~blue);
+    ~p1.lineTo(Point(coordx, coordy));
 		  ~px = coordx; ~py = coordy; ~pthick=thick; ~blue=color;
-				Pen.stroke;
+				~p1.stroke;
 
-		}; v.refresh}.defer;
+				~p2 = Pen;
+				~p2.moveTo(Point(~px1 , ~py1));
+				~p2.width = ~pthick;
+		  ~p2.strokeColor = Color.new(~red, 0.0, 1.0);
+    ~p2.lineTo(Point(coordx2, coordy2));
+    ~px1 = coordx2; ~py1 = coordy2; ~red=color2;
+				~p2.stroke;
 
-        ~snake2 = {|coordx=0, coordy=0, thick=1, color=0|
+		}; v.animate_(true)}.defer;
+
+   /*     ~snake2 = {|coordx=0, coordy=0, thick=1, color=0|
      			v.drawFunc = {
      				Pen.moveTo(Point(~px1 , ~py1));
      				Pen.width = ~pthick;
@@ -91,7 +112,7 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
      		  ~px1 = coordx; ~py1 = coordy; ~pthick=thick; ~red=color;
      				Pen.stroke;
 
-     		}; v.refresh}.defer;
+     		}; v.refresh}.defer;*/
 
 		w.front;
 
