@@ -9,9 +9,8 @@
 ~quotes[7] = "The CodeKlavier puts forward the piano as an interface for live coding, not merely as a substitute for the computer keyboard but as a means to explore coding through pianistic idioms and musical expressivity. (Veinberg, Ignacio, 2018";
 ~quotes[8] = "Historically, electronic musical interfaces have appropriated existing hardware in unexpected but expressive ways. (Meacham et al. 2016";
 ~quotes[9] = "You can be amazingly expressive with code (Aaron, 2015)";
-~quotes[10] = "Give us access to the performer's mind, to the whole human instrument.";
-~quotes[11] = "Give us access to the performer's mind, to the whole human instrument.";
-~quotes[12] = "Give us access to the performer's mind, to the whole human instrument.";
+~quotes[10] = "The interpreter-adviser-deviser model illustrates that collaboration is itself a practice, and therefore it is not only through collaboration that a piece is made, but it is also through collaboration that artistic practices are made. (Torrence, 2017)";
+~quotes[11] = "Live coding refers to the creation and modification of algorithms with a creative purpose in real time often in the presence of a physical or virtual audience. The community is diverse and seeks to engage in a wide cross-section of artistic practices including but not limited to music, audiovisual creation, performance, robotics, dance, scientific research and education. (ICLC 2019";
 
 
 ~quotes = ()
