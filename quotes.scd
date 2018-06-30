@@ -9,6 +9,4 @@
 ~quotes[7] = "The CodeKlavier puts forward the piano as an interface for live coding, not merely as a substitute for the computer keyboard but as a means to explore coding through pianistic idioms and musical expressivity. (Veinberg, Ignacio, “Coding through the Piano: The first phase of the CodeKlavier's development”, 2018";
 ~quotes[8] = "Historically, electronic musical interfaces have appropriated existing hardware in unexpected but expressive ways. (Meacham et al. 2016";
 ~quotes[9] = "Give us access to the performer's mind, to the whole human instrument.";
-~quotes[10] = "Give us access to the performer's mind, to the whole human instrument.";
-~quotes[11] = "Give us access to the performer's mind, to the whole human instrument.";
-~quotes[12] = "Give us access to the performer's mind, to the whole human instrument.";
+~quotes[10] = "Stop the lecture play the Ckalculator";

@@ -76,7 +76,7 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 		~px = 0; ~py = 0; ~pthick=1; ~blue=0;
         ~px1 = 0; ~py1 = 0; ~red=0;
 		~image = ~slider.next;
-        if (w != nil) {w.close};
+        if (w != nil || w != 1) {w.close}; 
         if (~image.width > 1000) {~offset = -200;} {~offset=0};
 		w = Window.new("ck presenter",[500+~offset, 391, ~image.width, ~image.height]);
 		v = UserView(w, w.view.bounds).clearOnRefresh_(false);
@@ -132,12 +132,12 @@ Ndef(\gong, {0.2*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 
 // hidden gong evaluation:
 OSCdef(\ck_gong, {|msg, time, addr, recvPort|
-var freq_offset = msg.asFloat;
+var freq_offset = msg[1].asFloat;
 Ndef(\gong, {0.6*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789])).sum*EnvGen.kr(Env.perc), 0.5, 0.95)}).play;
 }, '/gong');
 
 OSCdef(\ck_huyg, {|msg, time, addr, recvPort|
-var chunk = msg.asFloat;
+var chunk = msg[1].asFloat;
 Ndef(~names.next, {FreeVerb.ar(2.5*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, ~sustain)), 0.5, 0.95)}).play([0,1].choose,1);
 ~sustain = ~sustain*1.1;
 }, '/huygens');
