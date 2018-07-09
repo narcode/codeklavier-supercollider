@@ -12,8 +12,8 @@ s.waitForBoot({
 ~tremoloL1 = 0;
 ~tremoloL2 = 0;
 ~tremoloL1amp = 0;
-~tremoloM1 = 0;
-~tremoloM2 = 0;
+~tremoloM1 = 16;
+~tremoloM2 = 16;
 ~tremoloH1 = 0;
 ~tremoloH2 = 0;
 
@@ -28,12 +28,12 @@ s.waitForBoot({
 s.sync;
 
 //loop listener? is there a better solution?
-Tdef(\listenerkr, {
+Tdef(\listenerkr_snakes, {
   loop{
 
-{~snake.value(~tremoloL1.linlin(0, 16, 0, ~image.width), ~tremoloM1.linlin(0, 16, 0, ~image.height), ~tremoloL2.linlin(0, 16, 0, ~image.width), ~tremoloM2.linlin(0, 16, 0, ~image.height), ~tremoloL1amp.linlin(1, 16, 3, 36), ~tremoloH1.linlin(1, 14, 0.0, 1.0), ~tremoloH2.linlin(1, 14, 0.0, 1.0));}.defer;
+{~snake.value(~tremoloL1.linlin(0, 16, 0, ~image.width), ~tremoloM1.linlin(0, 16, ~image.height, 0), ~tremoloL2.linlin(0, 16, 0, ~image.width), ~tremoloM2.linlin(0, 16, ~image.height,0), ~tremoloL1amp.linlin(1, 16, 40, 180), ~tremoloH1.linlin(1, 14, 0.0, 1.0), ~tremoloH2.linlin(1, 14, 0.0, 1.0));}.defer;
 
-    0.1.wait;
+    0.05.wait;
     }
 }).play(~ts);
 

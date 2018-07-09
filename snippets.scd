@@ -18,16 +18,16 @@ s.sync;
 ~topR = 3000;
 ~rit2 = 1;
 ~name = Pseq([\pulse, \pulse2, \pulse3, \pulse4, \pulse5, \pulse6],inf).asStream;
-~tremoloM = 4;
-~tremoloH = 16;
-~tremoloL = 2;
-~tremoloL1 = 1;
-~tremoloL2 = 2;
-~tremoloL1amp = 1;
-~tremoloM1 = 6;
-~tremoloM2 = 1;
-~tremoloH1 = 2;
-~tremoloH2 = 1;
+~tremoloM = 0;
+~tremoloH = 0;
+~tremoloL = 0;
+~tremoloL1 = 0;
+~tremoloL2 = 0;
+~tremoloL1amp = 0;
+~tremoloM1 = 0;
+~tremoloM2 = 0;
+~tremoloH1 = 0;
+~tremoloH2 = 0;
 ~rit = 0.1;
 ~ampacc= 0.4;
 ~map_rhythm = false;
@@ -49,7 +49,7 @@ Tdef(\listenerkr, {
 
 // snippet 2
     Ndef(\krm2_1, {~tremoloM2.linlin(1, 16, 180, 800)}); // pitch
-    Ndef(\krm2_2, {~tremoloL2.linlin(1, 16, 0, 1.5)}); // amp
+    Ndef(\krm2_2, {~tremoloL2.linlin(1, 16, 0, 1)}); // amp
     Ndef(\krm2_3, {~tremoloH2.linlin(1, 16, 0, 15)}); // fx
 
 
