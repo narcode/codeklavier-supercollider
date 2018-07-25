@@ -1,4 +1,5 @@
 // midi mappings:
+{
 s.waitForBoot({
 	"starting MIDI...".postln;
 	MIDIIn.connectAll;
@@ -9,6 +10,8 @@ MIDIIn.connectAll;
 s.sync;
 m = MIDIOut.newByName("IAC Driver", "Bus 1");
 s.sync;
+}.fork);
+3.wait;
 // hello world \\
 (
 "setting variables and ostinatos...".postln;
@@ -226,7 +229,6 @@ Tdef(\iclcP2).stop;
 s.sync;
 "CodeKlavier is ready and listening...".postln;
 }.fork;
-);
 
 /// if you want to stop the pedal watcher:
 /*SkipJack.stop("pedalwatch");*/

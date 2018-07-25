@@ -2,13 +2,12 @@
 {
 s.waitForBoot({
 "starting MIDI...".postln;
-	MIDIClient.init;
+MIDIClient.init;
 s.sync;
 MIDIIn.connectAll;
 s.sync;
 m = MIDIOut.newByName("IAC Driver", "Bus 1");
 s.sync;
-"here 2...".postln;
 }.fork);
 3.wait;
 //hello world
