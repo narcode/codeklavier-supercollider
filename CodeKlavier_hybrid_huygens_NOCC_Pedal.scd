@@ -1,16 +1,17 @@
 // midi mappings:
+{
 s.waitForBoot({
 "starting MIDI...".postln;
-MIDIIn.connectAll;
-s.sync;
-MIDIClient.init;
+	MIDIClient.init;
 s.sync;
 MIDIIn.connectAll;
 s.sync;
 m = MIDIOut.newByName("IAC Driver", "Bus 1");
 s.sync;
-// hello world \\
-(
+"here 2...".postln;
+}.fork);
+3.wait;
+//hello world
 "setting variables and ostinatos...".postln;
 ~pitch = 0;~pitch1 = 0;~pitch2 = 0; ~pulsepitch = 0;
 // adjust the quant;
@@ -87,15 +88,10 @@ s.sync;
 		}
 	});
 	s.sync;
-);
-(
 "variables for SHA fx".postln;
 ~eamp=0;~eamp2=0;~eamp3=0;
 ~del=1;~del2=1;~del3=3;
 ~r3=1;
-	);
-
-	(
 	"variables for no CC Pedal".postln;
 	~semitonesup = Pseq([1,2,3,4,5,6,7,8,9,10,9,8,7,6,5,4,3,2,1,0], inf).asStream;
 	~semitonesd = Pseq([1,2,3,4,5,4,3,2,1,0]*(-1), inf).asStream;
@@ -109,9 +105,6 @@ s.sync;
 		}
 	}, 64);
 
-	);
-
-	(
 		"starting routine for re-pitching with piano pedal...".postln;
 		/// re-pitching:
 	SkipJack({
@@ -235,11 +228,9 @@ s.sync;
 	Tdef(\iclcP2).stop;
 		};
 	}; }, 0.2, name: "pedalwatch");
-	);
 	s.sync;
 	"CodeKlavier is ready and listening...".postln;
-	}.fork;
-	);
+}.fork;
 
 /*
 if you want to stop the pedal watcher:
