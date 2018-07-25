@@ -1,6 +1,6 @@
 /*
 
--> toy piano sampler by narcode. April 2017 <-
+-> toy piano sampler by narcode. April v2.0 <-
 
 Thanks to Anne Veinberg for Recording this
 
@@ -22,14 +22,22 @@ s.sync;
 ~sampleramp = 0.52;
 ~samplerampfx = 0.52;
 
+//player synth:
+SynthDef(\ck_sampler, {|amp=0.52, buffer, out=0, at=0.02, rl=1.5|
+		var sampler = PlayBuf.ar(2, buffer) * amp;
+		var env = EnvGen.kr(Env.perc(at, rl), doneAction:2);
+		Out.ar(out, sampler*env);
+}).store;
+
+
 // sampler node:
 MIDIdef.noteOn(\toypiano, {arg ...args;
   var midinote = args[1]-56;
   // args.postln;
   //midinote.postln;
 if (midinote < 64 && midinote >= 0) {
-  Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(6, group: g);
-  Ndef((midinote.asString++"d0").asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
+			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
+			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 6], g);
     }
   }, chan: 0, srcID: ~srcid);
 
@@ -39,8 +47,8 @@ if (midinote < 64 && midinote >= 0) {
     /*args.postln;*/
     //midinote.postln;
   if (midinote < 64 && midinote >= 0) {
-    Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(22, group: g);
-    Ndef((midinote.asString++"d1").asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
+			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
+			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 22], g);
       }
     }, chan: 1, srcID: ~srcid); // 1151127154
 
@@ -53,8 +61,8 @@ if (midinote < 64 && midinote >= 0) {
         //midinote.postln;
 
       if (midinote < 64 && midinote >= 0) {
-        Ndef(midinote.asSymbol, {~samplerampfx*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(6, group: g);
-        Ndef(duplicate.asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
+			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
+			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 6], g);
           }
         }, chan: 2, srcID: ~srcid); // 1151127154
 
@@ -65,7 +73,7 @@ if (midinote < 64 && midinote >= 0) {
             //midinote.postln;
 
           if (midinote < 64 && midinote >= 0) {
-            Ndef(midinote.asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
+			         Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
               }
             }, chan: 3, srcID: ~srcid); // 1151127154
 
@@ -75,7 +83,7 @@ MIDIdef.noteOn(\toypiano_ost, {arg ...args;
   // args.postln;
   //midinote.postln;
 if (midinote < 64 && midinote >= 0) {
-  Ndef((midinote.asString++"ost").asSymbol, {~sampleramp*PlayBuf.ar(2, b[midinote], loop:0) * EnvGen.kr(Env.perc(0.01, 1.5))}).play(0);
+			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
     }
   }, chan: 4, srcID: ~srcid);
 
