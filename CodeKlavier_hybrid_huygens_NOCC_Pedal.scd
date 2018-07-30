@@ -4,12 +4,14 @@ s.waitForBoot({
 "starting MIDI...".postln;
 MIDIClient.init;
 s.sync;
+}.fork);
+3.wait;
+"connecting MIDI interfaces...".postln;
 MIDIIn.connectAll;
 s.sync;
 m = MIDIOut.newByName("IAC Driver", "Bus 1");
 s.sync;
-}.fork);
-3.wait;
+2.wait;
 //hello world
 "setting variables and ostinatos...".postln;
 ~pitch = 0;~pitch1 = 0;~pitch2 = 0; ~pulsepitch = 0;
