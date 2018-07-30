@@ -36,7 +36,7 @@ MIDIdef.noteOn(\toypiano, {arg ...args;
   // args.postln;
   //midinote.postln;
 if (midinote < 64 && midinote >= 0) {
-			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
+			Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
 			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 6], g);
     }
   }, chan: 0, srcID: ~srcid);
@@ -47,7 +47,7 @@ if (midinote < 64 && midinote >= 0) {
     /*args.postln;*/
     //midinote.postln;
   if (midinote < 64 && midinote >= 0) {
-			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
+			Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
 			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 22], g);
       }
     }, chan: 1, srcID: ~srcid); // 1151127154
@@ -61,7 +61,7 @@ if (midinote < 64 && midinote >= 0) {
         //midinote.postln;
 
       if (midinote < 64 && midinote >= 0) {
-			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
+			Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
 			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 6], g);
           }
         }, chan: 2, srcID: ~srcid); // 1151127154
@@ -73,7 +73,7 @@ if (midinote < 64 && midinote >= 0) {
             //midinote.postln;
 
           if (midinote < 64 && midinote >= 0) {
-			         Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
+			         Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
               }
             }, chan: 3, srcID: ~srcid); // 1151127154
 
@@ -83,7 +83,7 @@ MIDIdef.noteOn(\toypiano_ost, {arg ...args;
   // args.postln;
   //midinote.postln;
 if (midinote < 64 && midinote >= 0) {
-			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 0], g);
+			Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
     }
   }, chan: 4, srcID: ~srcid);
 
