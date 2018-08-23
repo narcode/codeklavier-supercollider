@@ -8,6 +8,10 @@ t=TempoClock.default;
 ~hugbuf = Buffer.read(s, ~path++"/Samples/huygens.wav");
 ~hugbuf2 = Buffer.read(s, ~path++"/Samples/huygens2.wav");
 
+// global amp variables:
+~gongamp = 1.6;
+~huygensamp = 3.5;
+
 "Huygens samples loaded...".postln;
 
 ~stop = Environment[
@@ -65,11 +69,11 @@ Ndef(\gong, {0.9*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 // hidden gong evaluation:
 OSCdef(\ck_gong, {|msg, time, addr, recvPort|
 var freq_offset = msg[1].asFloat;
-Ndef(\gong, {1.6*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789])).sum*EnvGen.kr(Env.perc), 0.5, 0.95)}).play;
+Ndef(\gong, {~gongamp*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789])).sum*EnvGen.kr(Env.perc), 0.5, 0.95)}).play;
 }, '/gong');
 
 OSCdef(\ck_huyg, {|msg, time, addr, recvPort|
 var chunk = msg[1].asFloat;
-Ndef(~names.next, {FreeVerb.ar(3.5*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, ~sustain)), 0.5, 0.95)}).play([0,1].choose,1);
+Ndef(~names.next, {FreeVerb.ar(~huygensamp*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, ~sustain)), 0.5, 0.95)}).play([0,1].choose,1);
 ~sustain = ~sustain*1.1;
 }, '/huygens');

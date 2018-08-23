@@ -12,8 +12,11 @@ b = ();
 g = Group.new(s, \addToHead);
 ~pathsamples = thisProcess.nowExecutingPath.dirname;
 s.sync;
-32.do{|i|
-  ~num = 36 + i;
+
+// load all the samples:
+// (organ + toy piano + clock)
+44.do{|i|
+  ~num = 24 + i;
   b[i] = Buffer.read(s, ~pathsamples++"/TPSamples/"++~num++".wav");
 };
 s.sync;
