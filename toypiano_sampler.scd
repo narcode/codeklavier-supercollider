@@ -24,6 +24,7 @@ s.sync;
 ~srcid = 1429867122; // annerob: 1151127154 felipe 1429867122 anne -1869464304
 ~sampleramp = 0.52;
 ~samplerampfx = 0.52;
+~midiBufferOffset = 44;
 
 //player synth:
 SynthDef(\ck_sampler, {|amp=0.52, buffer, out=0, at=0.02, rl=1.5|
@@ -35,7 +36,7 @@ SynthDef(\ck_sampler, {|amp=0.52, buffer, out=0, at=0.02, rl=1.5|
 
 // sampler node:
 MIDIdef.noteOn(\toypiano, {arg ...args;
-  var midinote = args[1]-56;
+  var midinote = args[1]-~midiBufferOffset; // 57 - 44 = 13
   // args.postln;
   //midinote.postln;
 if (midinote < 64 && midinote >= 0) {
@@ -46,7 +47,7 @@ if (midinote < 64 && midinote >= 0) {
 
 // channel 1:
   MIDIdef.noteOn(\toypiano1, {arg ...args;
-    var midinote = args[1]-56;
+    var midinote = args[1]-~midiBufferOffset;
     /*args.postln;*/
     //midinote.postln;
   if (midinote < 64 && midinote >= 0) {
@@ -58,7 +59,7 @@ if (midinote < 64 && midinote >= 0) {
 
     // channel 2:
       MIDIdef.noteOn(\toypiano2, {arg ...args;
-        var midinote = args[1]-56;
+        var midinote = args[1]-~midiBufferOffset;
         var duplicate = midinote.asString++"d";
         /*args.postln;*/
         //midinote.postln;
@@ -71,18 +72,18 @@ if (midinote < 64 && midinote >= 0) {
 
         // channel 3:
           MIDIdef.noteOn(\toypiano3, {arg ...args;
-            var midinote = args[1]-56;
-            /*args.postln;*/
-            //midinote.postln;
+            var midinote = args[1]-~midiBufferOffset;
+            args.postln;
+            (midinote+24).postln;
 
-          if (midinote < 64 && midinote >= 0) {
+          if (midinote >= 0) {
 			         Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
               }
             }, chan: 3, srcID: ~srcid); // 1151127154
 
 // ostinatos:
 MIDIdef.noteOn(\toypiano_ost, {arg ...args;
-  var midinote = args[1]-56;
+  var midinote = args[1]-~midiBufferOffset;
   // args.postln;
   //midinote.postln;
 if (midinote < 64 && midinote >= 0) {

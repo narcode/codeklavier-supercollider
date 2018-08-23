@@ -43,7 +43,7 @@ SkipJack.stopAll;
 ~names = Pseq([\huyg1, \huyg2, \huyg3, \huyg4], inf).asStream;
 
 ~huygens = Environment[
-'stuk' -> {|self, chunk|
+'stuk' -> {|self, chunk=321|
 Ndef(~names.next, {FreeVerb.ar(2.8*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, ~sustain)), 0.5, 0.95)}).play([0,1].choose,1);
 ~sustain = ~sustain*1.1;
 },
@@ -57,7 +57,7 @@ Ndef(~names.next, {FreeVerb.ar(2.8*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, 
 ];
 
 ~gong = Environment[
-'play' -> {|self, freq_offset|
+'play' -> {|self, freq_offset=123|
 Ndef(\gong, {0.9*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789]))*EnvGen.kr(Env.perc), 0.5, 0.95)}).play;
 }
 ];
