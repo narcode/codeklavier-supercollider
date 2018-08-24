@@ -23,6 +23,7 @@ s.sync;
 
 ~srcid = 1429867122; // annerob: 1151127154 felipe 1429867122 anne -1869464304
 ~sampleramp = 0.52;
+~organamp = 1;
 ~samplerampfx = 0.52;
 ~midiBufferOffset = 44;
 
@@ -73,13 +74,46 @@ if (midinote < 64 && midinote >= 0) {
         // channel 3:
           MIDIdef.noteOn(\toypiano3, {arg ...args;
             var midinote = args[1]-~midiBufferOffset;
-            args.postln;
-            (midinote+24).postln;
+            // args.postln;
+            // (midinote+24).postln;
 
           if (midinote >= 0) {
-			         Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
+			  Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
               }
             }, chan: 3, srcID: ~srcid); // 1151127154
+
+        // channel 5 (organ):
+        MIDIdef.noteOn(\5, {arg ...args;
+          var midinote = args[1]-~midiBufferOffset;
+          // args.postln;
+          // (midinote+24).postln;
+
+        if (midinote >= 0) {
+            Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~d1o*2], g);
+            }
+          }, chan: 5, srcID: ~srcid);
+
+          // channel 6 (organ):
+          MIDIdef.noteOn(\6, {arg ...args;
+            var midinote = args[1]-~midiBufferOffset;
+
+          if (midinote >= 0) {
+              Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~d1o*2], g);
+              Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 6, \rl, ~d1o*2], g);
+              }
+            }, chan: 6, srcID: ~srcid);
+
+            // channel 7 (organ):
+            MIDIdef.noteOn(\7, {arg ...args;
+              var midinote = args[1]-~midiBufferOffset;
+
+            if (midinote >= 0) {
+                Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~d1o*2], g);
+                Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 22, \rl, ~d1o*2], g);
+                }
+              }, chan: 7, srcID: ~srcid);
+
+
 
 // ostinatos:
 MIDIdef.noteOn(\toypiano_ost, {arg ...args;

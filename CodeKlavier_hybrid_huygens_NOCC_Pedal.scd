@@ -61,8 +61,19 @@ s.sync;
 ~hello3=Pdef(\hello3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p3o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
 ~hello3.quant=~quant;
 s.sync;
-~hello2.quant=~quant;
 ~p1o=~p2o=~p3o=0;
+s.sync;
+// organ instances:
+~organ=Pdef(\organ, {Pbind(\dur, Pseq([Pfunc{~d1o}], inf), \ctranspose, Pfunc{~o1o}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, m, \chan, 5)});
+~organ.quant=~quant;
+~organ2=Pdef(\organ2, {Pbind(\dur, Pseq([Pfunc{~d2o}], inf), \ctranspose, Pfunc{~o2o}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, m, \chan, 6)});
+~organ2.quant=~quant;
+~organ3=Pdef(\organ3, {Pbind(\dur, Pseq([Pfunc{~d3o}], inf), \ctranspose, Pfunc{~o3o}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, m, \chan, 7)});
+~organ3.quant=~quant;
+s.sync;
+// transpose vars:
+~d1o=~d2o=~d3o=2;
+~o1o=~o2o=~o3o=0;
 s.sync;
 h=e=l=o=w=d=a=r=n=1;
 s.sync;
