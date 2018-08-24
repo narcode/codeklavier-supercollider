@@ -1,5 +1,12 @@
 // CodeKlavier Environment
 
+// Misc checks:
+if (thisProcess.openUDPPort(57120)) {
+"UDP port for CodeKlavier is listening...".postln;
+} {
+"Error opening UDP port for communication with CK".postln;
+}
+
 // tempo by default
 t=TempoClock.default;
 
