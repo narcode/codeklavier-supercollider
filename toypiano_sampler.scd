@@ -89,7 +89,7 @@ if (midinote < 64 && midinote >= 0) {
           // (midinote+24).postln;
 
         if (midinote >= 0) {
-            Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~d1o*2], g);
+            Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~od1*2], g);
             }
           }, chan: 5, srcID: ~srcid);
 
@@ -98,8 +98,8 @@ if (midinote < 64 && midinote >= 0) {
             var midinote = args[1]-~midiBufferOffset;
 
           if (midinote >= 0) {
-              Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~d1o*2], g);
-              Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 6, \rl, ~d1o*2], g);
+              Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~od1*2], g);
+              Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 6, \rl, ~od1*2], g);
               }
             }, chan: 6, srcID: ~srcid);
 
@@ -108,8 +108,8 @@ if (midinote < 64 && midinote >= 0) {
               var midinote = args[1]-~midiBufferOffset;
 
             if (midinote >= 0) {
-                Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~d1o*2], g);
-                Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 22, \rl, ~d1o*2], g);
+                Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~od1*2], g);
+                Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 22, \rl, ~od1*2], g);
                 }
               }, chan: 7, srcID: ~srcid);
 

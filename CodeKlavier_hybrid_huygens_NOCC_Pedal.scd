@@ -54,26 +54,27 @@ s.sync;
 ~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock3.quant=~quant;
 // hello pulse
-~hello=Pdef(\hello, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p1o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
-~hello.quant=~quant;
-~hello2=Pdef(\hello2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p2o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 1)});
-~hello2.quant=~quant;
-~hello3=Pdef(\hello3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{~p3o}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
-~hello3.quant=~quant;
+~tpiano=Pdef(\hello, {Pbind(\dur, Pseq([Pfunc{~tpd1}], inf), \ctranspose, Pfunc{~tp1}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
+~tpiano.quant=~quant;
+~tpiano2=Pdef(\hello2, {Pbind(\dur, Pseq([Pfunc{~tpd2}], inf), \ctranspose, Pfunc{~tp2}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 1)});
+~tpiano2.quant=~quant;
+~tpiano3=Pdef(\hello3, {Pbind(\dur, Pseq([Pfunc{~tpd3}], inf), \ctranspose, Pfunc{~tp3}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
+~tpiano3.quant=~quant;
 s.sync;
-~p1o=~p2o=~p3o=0;
+~tpd1=~tpd2=~tpd3=2;
+~tp1=~tp2=~tp3=0;
 s.sync;
 // organ instances:
-~organ=Pdef(\organ, {Pbind(\dur, Pseq([Pfunc{~d1o}], inf), \ctranspose, Pfunc{~o1o}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, m, \chan, 5)});
+~organ=Pdef(\organ, {Pbind(\dur, Pseq([Pfunc{~od1}], inf), \ctranspose, Pfunc{~o1}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, m, \chan, 5)});
 ~organ.quant=~quant;
-~organ2=Pdef(\organ2, {Pbind(\dur, Pseq([Pfunc{~d2o}], inf), \ctranspose, Pfunc{~o2o}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, m, \chan, 6)});
+~organ2=Pdef(\organ2, {Pbind(\dur, Pseq([Pfunc{~od2}], inf), \ctranspose, Pfunc{~o2}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, m, \chan, 6)});
 ~organ2.quant=~quant;
-~organ3=Pdef(\organ3, {Pbind(\dur, Pseq([Pfunc{~d3o}], inf), \ctranspose, Pfunc{~o3o}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, m, \chan, 7)});
+~organ3=Pdef(\organ3, {Pbind(\dur, Pseq([Pfunc{~od3}], inf), \ctranspose, Pfunc{~o3}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, m, \chan, 7)});
 ~organ3.quant=~quant;
 s.sync;
 // transpose vars:
-~d1o=~d2o=~d3o=2;
-~o1o=~o2o=~o3o=0;
+~od1=~od2=~od3=2;
+~o1=~o2=~o3=0;
 s.sync;
 h=e=l=o=w=d=a=r=n=1;
 s.sync;
@@ -81,7 +82,7 @@ s.sync;
 	~eamp=0;~eamp2=0;~eamp3=0;
 	~del=1;~del2=1;~del3=3;
 	~r3=1;
-	~p1o=~p2o=~p3o=0;
+	~tp1=~tp2=~tp3=0;
 	~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
 	\midinote, Pseq(["d3".namemidi, "B2".namemidi, "g3".namemidi, "g3".namemidi,
 	"a3".namemidi, "g3".namemidi, "b3".namemidi, "c#4".namemidi, "d4".namemidi, "a3".namemidi,
