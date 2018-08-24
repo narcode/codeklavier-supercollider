@@ -4,7 +4,7 @@
 if (thisProcess.openUDPPort(57120)) {
 "UDP port for CodeKlavier is listening...".postln;
 } {
-"Error opening UDP port for communication with CK".postln;
+"Error opening UDP port for communication with CK!".warn;
 }
 
 // tempo by default
