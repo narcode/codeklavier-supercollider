@@ -138,7 +138,7 @@ OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
         };
 
 	if (msg[1] == 'quote') {
-    {~text.string_(~quotes.next).font_(Font("Courier New", 39)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
+    {~text.string_(~squotes.next).font_(Font("Courier New", 39)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
     };
 
 }, "/ck_pp");

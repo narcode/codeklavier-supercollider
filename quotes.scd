@@ -12,3 +12,5 @@
 ~quotes[10] = "The interpreter-adviser-deviser model illustrates that collaboration is itself a practice, and therefore it is not only through collaboration that a piece is made, but it is also through collaboration that artistic practices are made. (Torrence, 2017)";
 ~quotes[11] = "Live coding refers to the creation and modification of algorithms with a creative purpose in real time often in the presence of a physical or virtual audience. The community is diverse and seeks to engage in a wide cross-section of artistic practices including but not limited to music, audiovisual creation, performance, robotics, dance, scientific research and education. (ICLC 2019";
 ~quotes[12] = "Stop the lecture play the Ckalculator";
+
+~squotes = Pseq(~quotes.asList, inf).asStream;
