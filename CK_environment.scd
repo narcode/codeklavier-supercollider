@@ -24,12 +24,15 @@ t=TempoClock.default;
 ~stop = Environment[
 'now' -> {|self|
 "stopping".postln;
-~hello.stop;
-~hello2.stop;
-~hello3.stop;
+~tpiano.stop;
+~tpiano2.stop;
+~tpiano3.stop;
 ~clock.stop;
 ~clock2.stop;
 ~clock3.stop;
+~organ.stop;
+~organ2.stop;
+~organ3.stop;
 ~ost.stop;
 ~ost1.stop;
 ~ost2.stop;
