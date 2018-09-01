@@ -2,7 +2,7 @@
 
 // Misc checks:
 if (thisProcess.openUDPPort(57120)) {
-"UDP port for CodeKlavier is correct listening...".postln;
+"UDP port for CodeKlavier is correct and listening...".postln;
 } {
 "Error opening UDP port for communication with CK!".warn;
 };

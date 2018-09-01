@@ -24,6 +24,7 @@ s.sync;
 ~srcid = -1869464304; // annerob: 1151127154 felipe 1429867122 anne -1869464304
 ~sampleramp = 0.52;
 ~organamp = 1;
+~clockamp = 0.5;
 ~samplerampfx = 0.52;
 ~midiBufferOffset = 44;
 
@@ -38,11 +39,11 @@ SynthDef(\ck_sampler, {|amp=0.52, buffer, out=0, at=0.02, rl=1.5|
 // sampler node:
 MIDIdef.noteOn(\toypiano, {arg ...args;
   var midinote = args[1]-~midiBufferOffset; // 57 - 44 = 13
-  // args.postln;
-  //midinote.postln;
+  args.postln;
+  midinote.postln;
 if (midinote < 64 && midinote >= 0) {
-			Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
-			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 6], g);
+			Synth(\ck_sampler, [\amp, ~clockamp, \buffer, midinote, \out, 0], g);
+			Synth(\ck_sampler, [\amp, ~clockamp, \buffer, midinote, \out, 6], g);
     }
   }, chan: 0, srcID: ~srcid);
 
@@ -50,10 +51,10 @@ if (midinote < 64 && midinote >= 0) {
   MIDIdef.noteOn(\toypiano1, {arg ...args;
     var midinote = args[1]-~midiBufferOffset;
     /*args.postln;*/
-    //midinote.postln;
+    // midinote.postln;
   if (midinote < 64 && midinote >= 0) {
 			Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
-			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 22], g);
+			Synth(\ck_sampler, [\amp, ~samplerampfx, \buffer, midinote, \out, 8], g);
       }
     }, chan: 1, srcID: ~srcid); // 1151127154
 
@@ -82,6 +83,16 @@ if (midinote < 64 && midinote >= 0) {
               }
             }, chan: 3, srcID: ~srcid); // 1151127154
 
+            // channle 4 (ostinatos):
+            MIDIdef.noteOn(\toypiano_ost, {arg ...args;
+              var midinote = args[1]-~midiBufferOffset;
+              // args.postln;
+              //midinote.postln;
+            if (midinote < 64 && midinote >= 0) {
+            			Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
+                }
+              }, chan: 4, srcID: ~srcid);
+
         // channel 5 (organ):
         MIDIdef.noteOn(\5, {arg ...args;
           var midinote = args[1]-~midiBufferOffset;
@@ -109,22 +120,9 @@ if (midinote < 64 && midinote >= 0) {
 
             if (midinote >= 0) {
                 Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 0, \rl, ~od1*2], g);
-                Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 22, \rl, ~od1*2], g);
+                Synth(\ck_sampler, [\amp, ~organamp, \buffer, midinote, \out, 8, \rl, ~od1*2], g);
                 }
               }, chan: 7, srcID: ~srcid);
-
-
-
-// ostinatos:
-MIDIdef.noteOn(\toypiano_ost, {arg ...args;
-  var midinote = args[1]-~midiBufferOffset;
-  // args.postln;
-  //midinote.postln;
-if (midinote < 64 && midinote >= 0) {
-			Synth(\ck_sampler, [\amp, ~sampleramp, \buffer, midinote, \out, 0], g);
-    }
-  }, chan: 4, srcID: ~srcid);
-
 
 s.sync;
 "Toy piano sampler ready!".postln;
@@ -133,7 +131,7 @@ s.sync;
 ~gtail = Group.new(s, \addToTail);
 Ndef(\fx, {|del=1, amp=0.001| CombN.ar(In.ar(6), 0.2, del.reciprocal, 4)*amp}).play(0, group: ~gtail);
 s.sync;
-Ndef(\fx1, {|del=1, amp=0.001| CombN.ar(In.ar(22), 0.2, del.reciprocal, 1)*amp}).play(1, group: ~gtail);
+Ndef(\fx1, {|del=1, amp=0.001| CombN.ar(In.ar(8), 0.2, del.reciprocal, 1)*amp}).play(1, group: ~gtail);
 s.sync;
 Ndef(\fx2, {|del=2, amp=0.001, rate=1| GVerb.ar(FreqShift.ar(In.ar(6), LFTri.kr(rate.reciprocal).range(8000, 100)), 62, del)*amp}).play(0,2, group: ~gtail);
 s.sync;
