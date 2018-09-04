@@ -1,14 +1,13 @@
 //quotes for Huygens
 ~quotes = ();
 
-~quotes[1] = "Live coding refers to the creation and modification of algorithms with a creative purpose in real time often in the presence of a physical or virtual audience. The community is diverse and seeks to engage in a wide cross-section of artistic practices including but not limited to music, audiovisual creation, performance, robotics, dance, scientific research and education. (ICLC 2019";
+~quotes[1] = "Live coding is where people write code using a programming language, in order to change a live process. (livecode Research Network)";
 ~quotes[2] = "The CodeKlavier is is a live coding language for the piano. (Ignacio, 2018)";
 ~quotes[3] = "Pianists have a hightened ability to use their hands independently, and the CodeKlavier enables them to apply this to coding through parallel programming";
 ~quotes[4] = "The CodeKlavier aims to turn the paradigm of art that is made possible and influenced by technology, to technology that is created through and affected by art. (Ignacio, 2017)";
 ~quotes[5] = "The CodeKlavier puts forward the piano as an interface for live coding, not merely as a substitute for the computer keyboard but as a means to explore coding through pianistic idioms and musical expressivity. (Veinberg, Ignacio, 2018";
 ~quotes[8] = "Historically, electronic musical interfaces have appropriated existing hardware in unexpected but expressive ways. (Meacham et al. 2016";
 ~quotes[9] = ""λ calculus can be called the smallest universal programming language of the world."(Rojas 2015) so we created our CKalcuƛator";
-~quotes[1] = "Live coding is where people write code using a programming language, in order to change a live process. (livecode Research Network)";
 
 ~squotes = Pseq(~quotes.asList, inf).asStream;
 
