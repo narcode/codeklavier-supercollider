@@ -63,7 +63,7 @@ Ndef(~names.next, {FreeVerb.ar(2.8*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, 
     //~snippet2.stop;
     //~snippet1.stop;
     ~stop.all;
-}
+},
 'eind' -> {|self|
     Ndef.all.do{|n| n.stop(13.rrand(15))};
     Ndef(\huygens_eind, {FreeVerb.ar(FreqShift.ar(PlayBuf.ar(2, ~hugbuf2, startPos: 0).sum, LFNoise1.kr([4, 1]).range(-10, 10)*Line.kr(1,0,6)), Line.kr(1, 0.1, 20), 1)}).play([0,1].choose,1);
