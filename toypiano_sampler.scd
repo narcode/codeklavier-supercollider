@@ -39,8 +39,8 @@ SynthDef(\ck_sampler, {|amp=0.52, buffer, out=0, at=0.02, rl=1.5|
 // sampler node:
 MIDIdef.noteOn(\toypiano, {arg ...args;
   var midinote = args[1]-~midiBufferOffset; // 57 - 44 = 13
-  args.postln;
-  midinote.postln;
+  // args.postln;
+  // midinote.postln;
 if (midinote < 64 && midinote >= 0) {
 			Synth(\ck_sampler, [\amp, ~clockamp, \buffer, midinote, \out, 0], g);
 			Synth(\ck_sampler, [\amp, ~clockamp, \buffer, midinote, \out, 6], g);
