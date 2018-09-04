@@ -6,8 +6,8 @@
 ~quotes[3] = "Pianists have a hightened ability to use their hands independently, and the CodeKlavier enables them to apply this to coding through parallel programming";
 ~quotes[4] = "The CodeKlavier aims to turn the paradigm of art that is made possible and influenced by technology, to technology that is created through and affected by art. (Ignacio, 2017)";
 ~quotes[5] = "The CodeKlavier puts forward the piano as an interface for live coding, not merely as a substitute for the computer keyboard but as a means to explore coding through pianistic idioms and musical expressivity. (Veinberg, Ignacio, 2018";
-~quotes[8] = "Historically, electronic musical interfaces have appropriated existing hardware in unexpected but expressive ways. (Meacham et al. 2016";
-~quotes[9] = ""λ calculus can be called the smallest universal programming language of the world."(Rojas 2015) so we created our CKalcuƛator";
+~quotes[6] = "Historically, electronic musical interfaces have appropriated existing hardware in unexpected but expressive ways. (Meacham et al. 2016";
+~quotes[7] = ""λ calculus can be called the smallest universal programming language of the world."(Rojas 2015) so we created our CKalcuƛator";
 
 ~squotes = Pseq(~quotes.asList, inf).asStream;
 
