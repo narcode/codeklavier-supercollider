@@ -224,16 +224,17 @@ OSCdef(\cklt, {|msg|
 
 // global amp variables:
 ~gongamp = 1.6;
-~huygensamp = 3.5;
+~huygensamp = 5;
 ~sustain = 1;
 ~names = Pseq([\huyg1, \huyg2, \huyg3, \huyg4], inf).asStream;
+~chunk = 123;
 
-
+(
 OSCdef(\ck_huyg, {|msg, time, addr, recvpPort|
-var chunk = 123;
 	msg[1].postln;
-Ndef(~names.next, {FreeVerb.ar(~huygensamp*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, ~sustain)), 0.5, 0.95)}).play([0,1].choose,1);
+~chunk = ~chunk+1;
+	Ndef(~names.next, {FreeVerb.ar(~huygensamp*PlayBuf.ar(2, ~hugbuf.bufnum, -1, startPos: BufFrames.kr(~hugbuf)*(~chunk/90)).sum*EnvGen.kr(Env.perc(0.1, ~sustain)), 0.5, 0.95)}).play([0,1].choose,1);
 ~sustain = ~sustain*1.1;
 }, '/ck_easteregg');
-
+);
 
