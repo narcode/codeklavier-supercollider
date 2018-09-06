@@ -228,6 +228,7 @@ OSCdef(\cklt, {|msg|
 ~sustain = 1;
 ~names = Pseq([\huyg1, \huyg2, \huyg3, \huyg4], inf).asStream;
 ~chunk = 123;
+thisProcess.openUDPPort(57120)
 
 (
 OSCdef(\ck_huyg, {|msg, time, addr, recvpPort|

@@ -133,7 +133,8 @@ Ndef(\gong, {0.9*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
         // presenter:
         (~path ++ "/pythonnets.scd").load;
 },
-	'new' -> {v.clearDrawing;}
+	'new' -> {v.clearDrawing;},
+'close' -> {~imgcont.close}
 ];
 
 
