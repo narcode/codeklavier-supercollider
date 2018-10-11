@@ -16,8 +16,8 @@ t=TempoClock.default;
 ~hugbuf2 = Buffer.read(s, ~path++"/Samples/huygens2.wav");
 
 // global amp variables:
-~gongamp = 1.6;
-~huygensamp = 3.5;
+~gongamp = 1.5;
+~huygensamp = 9;
 
 "Huygens samples loaded...".postln;
 
@@ -86,9 +86,7 @@ Ndef(\gong, {0.9*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 // images dictionary:
 		i = ();
 		i[0] = Image.new(~path++"/images/1.png");
-		i[1] = Image.new(~path++"/images/2.png");
-		// i[2] = Image.new(~path++"/images/3.png");
-		i[2] = Image.new(~path++"/images/4.png");
+		i[1] = Image.new(~path++"/images/5.png");
 
 ~slider = Pseq(i.atAll(i.order), inf).asStream;
 
