@@ -40,7 +40,7 @@ Tdef(\listenerkr, {
   loop{
 
 // sampler
-	if (~map_sampler == true) { ~sampleramp = ~tremoloM1.linlin(1, 16, 0.01, 1.5); }; // rit
+	if (~map_amp_tp == true) { ~map_amp_tp = ~tremoloM1.linlin(1, 16, 0.01, 1.5); }; // rit
 
 // snippet 1
 	if (~map_rhythm == true) { Ndef(\krm1_r, {~tremoloL1.linlin(1, 16, 1/2, 18)}) }; // rit
