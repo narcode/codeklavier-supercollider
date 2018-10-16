@@ -26,6 +26,7 @@ s.sync;
 ~tremoloL1amp = 1;
 ~tremoloM1 = 6;
 ~tremoloM2 = 1;
+~tremoloM3 = 1;
 ~tremoloH1 = 2;
 ~tremoloH2 = 1;
 ~rit = 0.1;
@@ -40,8 +41,8 @@ Tdef(\listenerkr, {
   loop{
 
 // sampler
-	if (~map_amp_tp == true) { ~map_amp_tp = ~tremoloM1.linlin(1, 16, 0.01, 1.5); }; // rit
-
+	if (~map_amp_tp == true) { ~amp_tp = ~tremoloM1.linlin(1, 16, 0.01, 1.5); }; // rit
+	if (~map_amp_org == true) { ~amp_org = ~tremoloM3.linlin(1, 16, 0.1, 10); }; // rit
 // snippet 1
 	if (~map_rhythm == true) { Ndef(\krm1_r, {~tremoloL1.linlin(1, 16, 1/2, 18)}) }; // rit
 	if (~map_amplitude == true) { Ndef(\krm1_a, {~tremoloL1amp.linlin(1, 16, 0.01, 1)}); }; //amp
