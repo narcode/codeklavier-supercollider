@@ -47,12 +47,13 @@ var randpitch = ["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "
 \type, \midi, \midiout, m)})});
 s.sync;
 //clocks
-~clock=Pdef(\clock, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
+~clock=Pdef(\clock, {Pbind(\dur, Pseq([Pfunc{~cld1}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock.quant=~quant;
-~clock2=Pdef(\clock2, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c#5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
+~clock2=Pdef(\clock2, {Pbind(\dur, Pseq([Pfunc{~cld2}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c#5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock2.quant=~quant;
-~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([2], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
+~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([Pfunc{~cl3d1}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock3.quant=~quant;
+~cld1=~cld2=~cld3=2;
 // hello pulse
 ~tpiano=Pdef(\hello, {Pbind(\dur, Pseq([Pfunc{~tpd1}], inf), \ctranspose, Pfunc{~tp1}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
 ~tpiano.quant=~quant;
@@ -80,6 +81,7 @@ h=e=l=o=w=d=a=r=n=1;
 s.sync;
 ~reset = Tdef(\reset, {1.do{h=e=l=o=w=d=a=r=n=1; t.tempo=1;
 	~eamp=0;~eamp2=0;~eamp3=0;
+	~od1=~od2=~od3=2;
 	~del=1;~del2=1;~del3=3;
 	~r3=1;
 	~tp1=~tp2=~tp3=0;
