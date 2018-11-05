@@ -17,7 +17,7 @@ t=TempoClock.default;
 
 // global amp variables:
 ~gongamp = 1.5;
-~huygensamp = 9;
+~huygensamp = 5;
 
 "Huygens samples loaded...".postln;
 
