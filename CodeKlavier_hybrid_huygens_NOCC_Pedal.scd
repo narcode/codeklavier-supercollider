@@ -83,6 +83,7 @@ s.sync;
 	~eamp=0;~eamp2=0;~eamp3=0;
 	~od1=~od2=~od3=2;
 	~del=1;~del2=1;~del3=3;
+	~cld1=~cld2=~cld3=2;
 	~r3=1;
 	~tp1=~tp2=~tp3=0;
 	~ost=Pdef(\ostinato1, {Pbind(\dur, Pseq([Pfuncn({1/h}, 1), Pfuncn({1/e},1), Pfuncn({1/l},1)], inf), \ctranspose, Pfunc{~pitch},
