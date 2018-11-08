@@ -51,7 +51,7 @@ s.sync;
 ~clock.quant=~quant;
 ~clock2=Pdef(\clock2, {Pbind(\dur, Pseq([Pfunc{~cld2}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c#5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock2.quant=~quant;
-~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([Pfunc{~cl3d1}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
+~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([Pfunc{~cld3}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, m, \chan, 0)});
 ~clock3.quant=~quant;
 ~cld1=~cld2=~cld3=2;
 // hello pulse
