@@ -59,11 +59,11 @@ s.sync;
 ~clock3.quant=~quant;
 ~cld1=~cld2=~cld3=2;
 // pno
-~piano=Pdef(\pno, {Pbind(\amp, Pfunc{~pnoamp}, \legato, 0.1, \dur, Pseq([Pfunc{~tpd1}], inf), \ctranspose, Pfunc{~tp1}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
+~piano=Pdef(\pno, {Pbind(\amp, Pfunc{~pnoamp}, \legato, 0.1, \dur, Pseq([Pfunc{~pnod1}], inf), \ctranspose, Pfunc{~pno1}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
 ~piano.quant=~quant;
-~piano2=Pdef(\pno2, {Pbind(\amp, Pfunc{~pnoamp}, \legato, 0.1, \dur, Pseq([Pfunc{~tpd2}], inf), \ctranspose, Pfunc{~tp2}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 1)});
+~piano2=Pdef(\pno2, {Pbind(\amp, Pfunc{~pnoamp}, \legato, 0.1, \dur, Pseq([Pfunc{~pnod2}], inf), \ctranspose, Pfunc{~pno2}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 1)});
 ~piano2.quant=~quant;
-~piano3=Pdef(\pno3, {Pbind(\amp, Pfunc{~pnoamp}, \legato, 0.1, \dur, Pseq([Pfunc{~tpd3}], inf), \ctranspose, Pfunc{~tp3}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
+~piano3=Pdef(\pno3, {Pbind(\amp, Pfunc{~pnoamp}, \legato, 0.1, \dur, Pseq([Pfunc{~pnod3}], inf), \ctranspose, Pfunc{~pno3}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
 ~piano3.quant=~quant;
 // hello pulse
 ~tpiano=Pdef(\hello, {Pbind(\dur, Pseq([Pfunc{~tpd1}], inf), \ctranspose, Pfunc{~tp1}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 3)});
