@@ -150,10 +150,11 @@ Ndef(\gong, {(~ampg*~ampoffsetg)*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0
 }, '/gong');
 
 OSCdef(\ck_pianogong, {|msg, time, addr, recvPort|
+~velocity_offset = 15;
 {
-~piano_gong.do{|n| if (n > 80) {~velocity = 40} {~velocity = 30}; ~midi.noteOn(0, n, ~velocity)};
+~piano_gong.do{|n| if (n > 80) {~velocitypg = 40+~velocity_offset} {~velocitypg = 30+~velocity_offset}; ~midi.noteOn(0, n, ~velocitypg)};
 3.wait;
-~piano_gong.do{|n| ~midi.noteOff(0, n, 60)};
+~piano_gong.do{|n| ~midi.noteOff(0, n, 100)};
 }.fork;
 }, '/pianogong');
 
