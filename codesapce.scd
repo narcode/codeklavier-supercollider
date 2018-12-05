@@ -1,6 +1,6 @@
  // universal
-~path = thisProcess.nowExecutingPath.dirname
-s.meter.window.alwaysOnTop_(true)
+~path = thisProcess.nowExecutingPath.dirname;
+s.meter.window.alwaysOnTop_(true);
 (~path ++ "/CodeKlavier_hybrid_Gaudeamus.scd").load; // special samples based on Air De Cour
 
 // load the sampler:
@@ -11,3 +11,5 @@ s.meter.window.alwaysOnTop_(true)
 (~path ++ "/CK_environment.scd").load;
 
 //// codespace \\\\
+
+~ost2.play;
