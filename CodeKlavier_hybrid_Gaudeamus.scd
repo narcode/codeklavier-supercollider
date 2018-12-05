@@ -66,6 +66,8 @@ s.sync;
 ~piano2.quant=~quant;
 ~piano3=Pdef(\pno3, {Pbind(\amp, Pfunc{~pnoamp}, \legato, 0.1, \dur, Pseq([Pfunc{~pnod3}], inf), \ctranspose, Pfunc{~pno3}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, m, \chan, 2)});
 ~piano3.quant=~quant;
+~pnod1=~pnod2=~pnod3=2;
+~pno1=~pno2=~pno3=0;
 // hello pulse
 ~tpiano=Pdef(\hello, {Pbind(\dur, Pseq([Pfunc{~tpd1}], inf), \ctranspose, Pfunc{~tp1}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 3)});
 ~tpiano.quant=~quant;
