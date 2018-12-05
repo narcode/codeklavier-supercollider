@@ -8,8 +8,8 @@ Thanks to Anne Veinberg for Recording this
 
 {
 // load the custom toy piano samples
-b = ();
-g = Group.new(s, \addToHead);
+~buffer = ();
+~headG = Group.new(s, \addToHead);
 ~pathsamples = thisProcess.nowExecutingPath.dirname;
 s.sync;
 
@@ -17,7 +17,7 @@ s.sync;
 // (organ + toy piano + clock)
 44.do{|i|
   ~num = 24 + i;
-  b[i] = Buffer.read(s, ~pathsamples++"/TPSamples/"++~num++".wav");
+  ~buffer[i] = Buffer.read(s, ~pathsamples++"/TPSamples/"++~num++".wav");
 };
 s.sync;
 
@@ -42,8 +42,8 @@ MIDIdef.noteOn(\toypiano, {arg ...args;
   // args.postln;
   // midinote.postln;
 if (midinote < 64 && midinote >= 0) {
-			Synth(\ck_sampler, [\amp, ~clockamp, \buffer, midinote, \out, 0], g);
-			Synth(\ck_sampler, [\amp, ~clockamp, \buffer, midinote, \out, 6], g);
+			Synth(\ck_sampler, [\amp, ~clockamp, \buffer, midinote, \out, 0], ~headG);
+			Synth(\ck_sampler, [\amp, ~clockamp, \buffer, midinote, \out, 6], ~headG);
     }
   }, chan: 0, srcID: ~srcid);
 
@@ -53,8 +53,8 @@ if (midinote < 64 && midinote >= 0) {
     /*args.postln;*/
     // midinote.postln;
   if (midinote < 64 && midinote >= 0) {
-			Synth(\ck_sampler, [\amp, ~amp_tp, \buffer, midinote, \out, 0], g);
-			Synth(\ck_sampler, [\amp, ~amp_tpfx, \buffer, midinote, \out, 8], g);
+			Synth(\ck_sampler, [\amp, ~amp_tp, \buffer, midinote, \out, 0], ~headG);
+			Synth(\ck_sampler, [\amp, ~amp_tpfx, \buffer, midinote, \out, 8], ~headG);
       }
     }, chan: 1, srcID: ~srcid); // 1151127154
 
@@ -67,8 +67,8 @@ if (midinote < 64 && midinote >= 0) {
         //midinote.postln;
 
       if (midinote < 64 && midinote >= 0) {
-			Synth(\ck_sampler, [\amp, ~amp_tp, \buffer, midinote, \out, 0], g);
-			Synth(\ck_sampler, [\amp, ~samplerafx, \buffer, midinote, \out, 6], g);
+			Synth(\ck_sampler, [\amp, ~amp_tp, \buffer, midinote, \out, 0], ~headG);
+			Synth(\ck_sampler, [\amp, ~samplerafx, \buffer, midinote, \out, 6], ~headG);
           }
         }, chan: 2, srcID: ~srcid); // 1151127154
 
@@ -79,7 +79,7 @@ if (midinote < 64 && midinote >= 0) {
             // (midinote+24).postln;
 
           if (midinote >= 0) {
-			  Synth(\ck_sampler, [\amp, ~amp_tp, \buffer, midinote, \out, 0], g);
+			  Synth(\ck_sampler, [\amp, ~amp_tp, \buffer, midinote, \out, 0], ~headG);
               }
             }, chan: 3, srcID: ~srcid); // 1151127154
 
@@ -89,7 +89,7 @@ if (midinote < 64 && midinote >= 0) {
               // args.postln;
               //midinote.postln;
             if (midinote < 64 && midinote >= 0) {
-            			Synth(\ck_sampler, [\amp, ~amp_tp, \buffer, midinote, \out, 0], g);
+            			Synth(\ck_sampler, [\amp, ~amp_tp, \buffer, midinote, \out, 0], ~headG);
                 }
               }, chan: 4, srcID: ~srcid);
 
@@ -100,7 +100,7 @@ if (midinote < 64 && midinote >= 0) {
           // (midinote+24).postln;
 
         if (midinote >= 0) {
-            Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], g);
+            Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], ~headG);
             }
           }, chan: 5, srcID: ~srcid);
 
@@ -109,8 +109,8 @@ if (midinote < 64 && midinote >= 0) {
             var midinote = args[1]-~midiBufferOffset;
 
           if (midinote >= 0) {
-              Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], g);
-              Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 6, \rl, ~od1*2], g);
+              Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], ~headG);
+              Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 6, \rl, ~od1*2], ~headG);
               }
             }, chan: 6, srcID: ~srcid);
 
@@ -119,8 +119,8 @@ if (midinote < 64 && midinote >= 0) {
               var midinote = args[1]-~midiBufferOffset;
 
             if (midinote >= 0) {
-                Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], g);
-                Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 8, \rl, ~od1*2], g);
+                Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], ~headG);
+                Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 8, \rl, ~od1*2], ~headG);
                 }
               }, chan: 7, srcID: ~srcid);
 
