@@ -141,12 +141,21 @@ Ndef(\gong, {0.9*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 ~stop.know = true;
 ~huygens.know = true;
 ~gong.know = true;
+~piano_gong = [23, 42, 35, 56, 67, 63, 81, 91, 100,103];
 
 // hidden gong evaluation:
 OSCdef(\ck_gong, {|msg, time, addr, recvPort|
 var freq_offset = msg[1].asFloat;
 Ndef(\gong, {(~ampg*~ampoffsetg)*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789])).sum*EnvGen.kr(Env.perc), 0.5, 0.95)}).play;
 }, '/gong');
+
+OSCdef(\ck_pianogong, {|msg, time, addr, recvPort|
+{
+~piano_gong.do{|n| if (n > 80) {~velocity = 40} {~velocity = 30}; ~midi.noteOn(0, n, ~velocity)};
+3.wait;
+~piano_gong.do{|n| ~midi.noteOff(0, n, 60)};
+}.fork;
+}, '/pianogong');
 
 OSCdef(\ck_huyg, {|msg, time, addr, recvPort|
 var chunk = msg[1].asFloat;
