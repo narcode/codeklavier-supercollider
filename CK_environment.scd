@@ -31,6 +31,9 @@ t=TempoClock.default;
 ~tpiano.stop;
 ~tpiano2.stop;
 ~tpiano3.stop;
+~piano.stop;
+~piano2.stop;
+~piano3.stop;
 ~clock.stop;
 ~clock2.stop;
 ~clock3.stop;
@@ -38,10 +41,10 @@ t=TempoClock.default;
 ~organ2.stop;
 ~organ3.stop;
 ~ost.stop;
-~ost1.stop;
 ~ost2.stop;
-~down=0;~down1=0;~down2=0;
-~op=0;~op1=0;~op2=0;
+~ost3.stop;
+~down1=0;~down2=0;~down3=0;
+~op1=0;~op2=0;~op3=0;
 t.tempo = 1;
 (~path ++ "/snippets.scd").load;
 (~path ++ "/CK_environment.scd").load;
@@ -149,14 +152,27 @@ var freq_offset = msg[1].asFloat;
 Ndef(\gong, {(~ampg*~ampoffsetg)*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789])).sum*EnvGen.kr(Env.perc), 0.5, 0.95)}).play;
 }, '/gong');
 
-OSCdef(\ck_pianogong, {|msg, time, addr, recvPort|
+// disklavier specific
 ~velocity_offset = 15;
+OSCdef(\ck_pianogong, {|msg, time, addr, recvPort|
 {
 ~piano_gong.do{|n| if (n > 80) {~velocitypg = 40+~velocity_offset} {~velocitypg = 30+~velocity_offset}; ~midi.noteOn(0, n, ~velocitypg)};
 3.wait;
 ~piano_gong.do{|n| ~midi.noteOff(0, n, 100)};
 }.fork;
 }, '/pianogong');
+
+~grow = Pseq(Array.series(32, 1, 1), inf).asStream;
+~max = Pseq(Array.series(32, 109-32, 1), inf).asStream;
+~duration = Pseq(Array.series(6/0.1, 0.1, 0.1), inf).asStream;
+OSCdef(\ck_piantake, {|msg, time, addr, recvPort|
+    {
+    ~pianocluster = Array.rand(~grow.next, 21, ~max.next);
+    ~pianocluster.do{|n| if (n > 80) {~velocitypg = 40+~velocity_offset} {~velocitypg = 30+~velocity_offset}; ~midi.noteOn(0, n, ~velocitypg)};
+    (~duration.next).wait;
+    ~pianocluster.do{|n| ~midi.noteOff(0, n, 100)};
+    }.fork;
+}, '/pianotake');
 
 OSCdef(\ck_huyg, {|msg, time, addr, recvPort|
 var chunk = msg[1].asFloat;

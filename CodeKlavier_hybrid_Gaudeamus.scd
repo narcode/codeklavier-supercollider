@@ -9,7 +9,7 @@ s.sync;
 "connecting MIDI interfaces...".postln;
 MIDIIn.connectAll;
 s.sync;
-// m = MIDIOut.newByName("USB MIDI Interface", "USB MIDI Interface");
+~midisampler = MIDIOut.newByName("IAC Driver", "Bus 1"); // choose the correct MIDI device
 ~midi = MIDIOut.newByName("YAMAHA USB Device", "Port1"); // choose the correct MIDI device
 s.sync;
 2.wait;
@@ -52,11 +52,11 @@ var randpitch = ["ab3".namemidi, "B3".namemidi, "C4".namemidi, "gb3".namemidi, "
 \type, \midi, \midiout, Pfunc{~midi})})});
 s.sync;
 //clocks
-~clock=Pdef(\clock, {Pbind(\dur, Pseq([Pfunc{~cld1}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c5".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 0)});
+~clock=Pdef(\clock, {Pbind(\dur, Pseq([Pfunc{~cld1}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c5".namemidi], inf), \type, \midi, \midiout, Pfunc{~midisampler}, \chan, 0)});
 ~clock.quant=~quant;
-~clock2=Pdef(\clock2, {Pbind(\dur, Pseq([Pfunc{~cld2}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c#5".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 0)});
+~clock2=Pdef(\clock2, {Pbind(\dur, Pseq([Pfunc{~cld2}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["c#5".namemidi], inf), \type, \midi, \midiout, Pfunc{~midisampler}, \chan, 0)});
 ~clock2.quant=~quant;
-~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([Pfunc{~cld3}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 0)});
+~clock3=Pdef(\clock3, {Pbind(\dur, Pseq([Pfunc{~cld3}], inf), \ctranspose, Pfunc{1}, \midinote, Pseq(["d5".namemidi], inf), \type, \midi, \midiout, Pfunc{~midisampler}, \chan, 0)});
 ~clock3.quant=~quant;
 ~cld1=~cld2=~cld3=2;
 // pno
@@ -69,22 +69,22 @@ s.sync;
 ~pnod1=~pnod2=~pnod3=2;
 ~pno1=~pno2=~pno3=0;
 // hello pulse
-~tpiano=Pdef(\hello, {Pbind(\dur, Pseq([Pfunc{~tpd1}], inf), \ctranspose, Pfunc{~tp1}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 3)});
+~tpiano=Pdef(\hello, {Pbind(\dur, Pseq([Pfunc{~tpd1}], inf), \ctranspose, Pfunc{~tp1}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, Pfunc{~midisampler}, \chan, 3)});
 ~tpiano.quant=~quant;
-~tpiano2=Pdef(\hello2, {Pbind(\dur, Pseq([Pfunc{~tpd2}], inf), \ctranspose, Pfunc{~tp2}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 1)});
+~tpiano2=Pdef(\hello2, {Pbind(\dur, Pseq([Pfunc{~tpd2}], inf), \ctranspose, Pfunc{~tp2}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, Pfunc{~midisampler}, \chan, 1)});
 ~tpiano2.quant=~quant;
-~tpiano3=Pdef(\hello3, {Pbind(\dur, Pseq([Pfunc{~tpd3}], inf), \ctranspose, Pfunc{~tp3}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 2)});
+~tpiano3=Pdef(\hello3, {Pbind(\dur, Pseq([Pfunc{~tpd3}], inf), \ctranspose, Pfunc{~tp3}, \midinote, Pseq(["a2".namemidi], inf), \type, \midi, \midiout, Pfunc{~midisampler}, \chan, 2)});
 ~tpiano3.quant=~quant;
 s.sync;
 ~tpd1=~tpd2=~tpd3=2;
 ~tp1=~tp2=~tp3=0;
 s.sync;
 // organ instances:
-~organ=Pdef(\organ, {Pbind(\dur, Pseq([Pfunc{~od1}], inf), \ctranspose, Pfunc{~o1}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 5)});
+~organ=Pdef(\organ, {Pbind(\dur, Pseq([Pfunc{~od1}], inf), \ctranspose, Pfunc{~o1}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, Pfunc{~midisampler}, \chan, 5)});
 ~organ.quant=~quant;
-~organ2=Pdef(\organ2, {Pbind(\dur, Pseq([Pfunc{~od2}], inf), \ctranspose, Pfunc{~o2}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 6)});
+~organ2=Pdef(\organ2, {Pbind(\dur, Pseq([Pfunc{~od2}], inf), \ctranspose, Pfunc{~o2}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, Pfunc{~midisampler}, \chan, 6)});
 ~organ2.quant=~quant;
-~organ3=Pdef(\organ3, {Pbind(\dur, Pseq([Pfunc{~od3}], inf), \ctranspose, Pfunc{~o3}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, Pfunc{~midi}, \chan, 7)});
+~organ3=Pdef(\organ3, {Pbind(\dur, Pseq([Pfunc{~od3}], inf), \ctranspose, Pfunc{~o3}, \midinote, Pseq(["g#1".namemidi], inf), \type, \midi, \midiout, Pfunc{~midisampler}, \chan, 7)});
 ~organ3.quant=~quant;
 s.sync;
 // transpose vars:
