@@ -90,7 +90,7 @@ Ndef(\gong, {0.9*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 // images dictionary:
 		~imges = ();
 		~imges[0] = Image.new(~path++"/images/1.png");
-		~imges[1] = Image.new(~path++"/images/5.png");
+		// ~imges[1] = Image.new(~path++"/images/5.png");
 
 ~slider = Pseq(~imges.atAll(~imges.order), inf).asStream;
 
