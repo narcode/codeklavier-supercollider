@@ -19,6 +19,7 @@ t=TempoClock.default;
 ~ampg = 1.5;
 ~amph = 5;
 ~ampoffsetg = 0.5;
+~ampdong = 0.5;
 
 "Huygens samples loaded...".postln;
 
@@ -156,7 +157,7 @@ Ndef(\gong, {(~ampg*~ampoffsetg)*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0
 ~velocity_offset = 15;
 OSCdef(\ck_pianogong, {|msg, time, addr, recvPort|
 {
-~piano_gong.do{|n| if (n > 80) {~velocitypg = 40+~velocity_offset} {~velocitypg = 30+~velocity_offset}; ~midi.noteOn(0, n, ~velocitypg)};
+~piano_gong.do{|n| if (n > 80) {~velocitypg = ~ampdong*(40+~velocity_offset)} {~velocitypg = ~ampdong*(30+~velocity_offset)}; ~midi.noteOn(0, n, ~velocitypg)};
 3.wait;
 ~piano_gong.do{|n| ~midi.noteOff(0, n, 100)};
 }.fork;
@@ -180,14 +181,14 @@ Ndef(~names.next, {FreeVerb.ar(~amph*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose
 ~sustain = ~sustain*1.1;
 }, '/huygens');
 
-OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
-    msg.postln;
-    if (msg[1] == 'text1') {
-	{~text.string_("You passed bravo!").font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
-        };
-
-	if (msg[1] == 'quote') {
-    {~text.string_(~squotes.next).font_(Font("Courier New", 39)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
-    };
-
-}, "/ck_pp");
+// OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
+//     msg.postln;
+//     if (msg[1] == 'text1') {
+// 	{~text.string_("You passed bravo!").font_(Font("Courier New", 89)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
+//         };
+//
+// 	if (msg[1] == 'quote') {
+//     {~text.string_(~squotes.next).font_(Font("Courier New", 39)).align_(\center).stringColor_(Color.cyan).background_(Color.new(0,0,0,0.5));}.defer;
+//     };
+//
+// }, "/ck_pp");
