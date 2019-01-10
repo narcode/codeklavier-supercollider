@@ -3,6 +3,7 @@
 (
 {
 	// global vars:
+	t = TempoClock.default_(90/60);
 ~gt = 'false';
 ~lt = 'false';
 ~equal = 'false';
