@@ -22,7 +22,7 @@ s.sync;
 ~tremoloH = 16;
 ~tremoloL = 2;
 ~tremoloL1 = 1;
-~tremoloL2 = 2;
+~tremoloL2 = 1;
 ~tremoloL1amp = 1;
 ~tremoloM1 = 6;
 ~tremoloM2 = 1;
