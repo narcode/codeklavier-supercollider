@@ -150,7 +150,7 @@ Ndef(\gong, {0.9*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 // hidden gong evaluation:
 OSCdef(\ck_gong, {|msg, time, addr, recvPort|
 var freq_offset = msg[1].asFloat;
-Ndef(\gong, {(~ampg*~ampoffsetg)*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789])).sum*EnvGen.kr(Env.perc), 0.5, 0.95)}).play;
+Ndef(\gong, {(~ampg*~ampoffsetg)*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([(1234+freq_offset)*LFTri.kr(0.1.rrand(18)).range(0.98, 1.02), 150, 299, 544*Line.kr(1, 2, 6), 1789])).sum*EnvGen.kr(Env.perc), 0.5, 0.95)}).play([0,1].choose);
 }, '/gong');
 
 // disklavier specific
