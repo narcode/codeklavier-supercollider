@@ -1,11 +1,7 @@
-//// Ckalculator Classes 2019
-
 /*
-LiveBuffer
-CK helper classes. Now for Ckalculator only
-
+CK helper classes. Now for Ckalculator only.
+2019
 */
-// Ndef(\anne_is_not_drunk, {GVerb.ar(PitchShift.ar(SoundIn.ar(0,2), 0.02, [3,4,3/2]),78, 4)*0.2}).play(0,2);
 
 CKpianoFX {
 	classvar <>in=0, <>fadeT=4, <>out;
@@ -177,6 +173,3 @@ Ckalculator {
 	}
 
 }
-
-/// TODO:
-/// - end with a non sense pose and pause for 20'
