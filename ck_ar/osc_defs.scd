@@ -40,7 +40,7 @@ SynthDef(\bank_drone, {arg out=0, amp=1, rl=1, at=0.1, st=30, midinote=24, eqfre
 	env = EnvGen.kr(Env.linen(at, st, rl), doneAction: 2);
 	in = BrownNoise.ar(LFNoise0.kr((21+note).midicps).range(0, 0.05))*LFNoise2.kr(8).range(0.01, 1);
 	in2 = SinOsc.ar([midinote.midicps, (midinote-3).midicps, (midinote+7).midicps]+note, 0, [1,0.3, 0.1]) * 0.2;
-	in3 = SinOsc.ar([(midinote+24).midicps, (midinote+36).midicps, (midinote+5).midicps]+note, 0, [1,0.3, 0.1]) * 0.2;
+			in3 = SinOsc.ar([(midinote+24+note).midicps, (midinote+36+note).midicps, (midinote+5+note).midicps].postln, 0, [1,0.3, 0.1]) * 0.2;
 	in = (in * in2) + in2 + in3;
 	fx = BPF.ar(in, eqfreq, LFNoise1.kr(rate).range(0.01, 1));
 	in = fx * env * amp;
@@ -96,12 +96,11 @@ OSCdef(\ckar, {arg msg;
 				1, {if (num == 0) {amp = 0} {amp = 1}; rit = 1/4; Synth(\bank1, [\eqfreq, [100,345,543,657,789,987,2345,3456,6567][num-1], \amp, amp, \rl, rit, \ratio, num, \rate, num])}, // low generation == whistle
 				2, {if (num == 0) {amp = 0} {amp = 1}; rit = 2; Synth(\bank_samples_no_env, [\rate, 1, \amp, amp, \buffer, b[1][num], \pos, -1.rrand(1.0)])},
 				3, {if (num == 0) {amp = 0} {amp = 4}; rit = 1/2; Synth(\bank_samples, [\amp, amp, \buffer, b[2][num], \rl, 1.rrand(5)*rit, \pos, -1.rrand(1.0)])},
-				4, {if (num == 0) {amp = 0} {amp = 1}; rit = 1/8; Synth(\bank_samples, [\amp, amp, \buffer, b[3][num], \rl, 1.rrand(5)*rit, \pos, -1.rrand(1.0)])},
+				4, {if (num == 0) {amp = 0} {amp = 1}; rit = 1/8; Synth(\bank_samples, [\amp, amp, \buffer, b[3][num], \rl, 0.2.rrand(0.01)*rit, \pos, -1.rrand(1.0)])},
 				5, {if (num == 0) {amp = 0} {amp = 1}; rit = 1/2; Synth(\bank_samples, [\amp, amp, \buffer, b[4][num], \rl, 1.rrand(5)*rit, \pos, -1.rrand(1.0)])},
-				6, {rit = 5; a = Synth(\bank_drone, [\out, 2, \amp,1, \note, num.postln], h); },
+						6, {rit = 5; if (a.isPlaying) {a.set(\note, num)} {a = Synth(\bank_drone, [\out, 2, \midinote, 21, \amp,1, \note, num], h).register;} },
 				// 6, {rit = 5; if (a.isPlaying) {a.set(\pratio, num)} {a = Synth(\bank3_fx, [\amp, 2, \in, 0, \pratio, num]).register;}; }
 			);
-
 
 					(rit).wait;
 		};
