@@ -122,14 +122,14 @@ OSCdef(\ckar, {arg msg;
 			var rit = 1;
 
 			switch(bank,
-				1, {rit = 2; if (a.isPlaying) {a.set(\note, num)} {a = Synth(\bank_drone, [\out, 2, \midinote, 21, \amp,1, \note, num], h).register;} },
+				1, {rit = 1.5; if (a.isPlaying) {a.set(\note, num)} {a = Synth(\bank_drone, [\out, 2, \midinote, 21, \amp,1, \note, num], h).register;} },
 				2, {rit = 1; if (c.isPlaying) {c.set(\note, num)} {c = Synth(\bank_drone2, [\out, 2, \midinote, 25, \amp,0.5, \note, num], h).register;} },
 				//3, {rit = 4; if (d.isPlaying) {d.set(\note, num)} {d = Synth(\bank_drone3, [\out, 2, \midinote, 14, \amp,0.3, \note, num], h).register;} },
 				5, {if (num == 0) {amp = 0} {amp = 1}; rit = 1/4; Synth(\bank1, [\eqfreq, [100,345,543,657,789,987,2345,3456,6567][num-1], \amp, amp, \rl, rit, \ratio, num, \rate, num])}, // low generation == whistle
 				//3, {if (num == 0) {amp = 0} {amp = 4}; rit = 1/2; Synth(\bank_samples, [\amp, amp, \buffer, b[2][num], \rl, 1.rrand(5)*rit, \pos, -1.rrand(1.0)])},
 				4, {if (num == 0) {amp = 0} {amp = 2}; rit = 1/2; Synth(\bank_samples, [\amp, amp, \buffer, b[1][num], \rl, 1.rrand(5)*rit, \pos, -1.rrand(1.0)])},
-				6, {if (num == 0) {amp = 0} {amp = 0.5}; rit = 2; Synth(\bank_samples_no_env, [\rate, 1, \amp, amp, \buffer, b[5][num], \pos, -1.rrand(1.0)])},
-				3, {if (num == 0) {amp = 0} {amp = 0.5}; rit = 2; Synth(\bank_samples_no_env, [\rate, 1, \amp, amp, \buffer, b[4][num], \pos, -1.rrand(1.0)])},
+				3, {if (num == 0) {amp = 0} {amp = 0.5}; rit = 2; Synth(\bank_samples_no_env, [\rate, 1, \amp, amp, \buffer, b[5][num], \pos, -1.rrand(1.0)])},
+				6, {if (num == 0) {amp = 0} {amp = 0.2}; rit = 2; Synth(\bank_samples_no_env, [\rate, 1, \amp, amp, \buffer, b[4][num], \pos, -1.rrand(1.0)])},
 				7, {if (num == 0) {amp = 0} {amp = 1}; rit = 1/8; Synth(\bank_samples, [\amp, amp, \buffer, b[3][num], \rl, 0.2.rrand(0.01)*rit, \pos, -1.rrand(1.0)])},
 				//6, {rit = 5; if (a.isPlaying) {a.set(\pratio, num)} {a = Synth(\bank3_fx, [\amp, 2, \in, 0, \pratio, num]).register;}; }
 			);
