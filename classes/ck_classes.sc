@@ -1,19 +1,23 @@
+//// Ckalculator Classes 2019
+
 /*
-CK helper classes. Now for Ckalculator only.
-2019
+CK helper classes. Now for Ckalculator only
 */
 
-CKpianoFX {
-	classvar <>in=0, <>fadeT=4, <>out;
+//////////////////////////////
 
-	*new {|input=0|
+CkpianoFX {
+	classvar <>in=0, <>fadeT=4, <>out=0;
+
+	*new {|input=0, output=0|
 		in = input;
-		^super.new.init(input);
+		out = output;
+		^super.new.init(input, output);
 	}
 
-	init {|input|
+	init {|input, output|
 		("FX node started with input channel " ++ input).postln;
-		out=0;
+
 	}
 
 	typicalCK {|amp=0.2, freqs=0.5, size=4, dec=4|
@@ -132,6 +136,8 @@ Ckalculator {
 
 		}, '/ck');
 
+		this.easter_eggs();
+
 	}
 
 	harmony_amp_ {|amp|
@@ -140,7 +146,7 @@ Ckalculator {
 		}).fadeTime_(3);
 	}
 
-	hi_noise {// source=true?
+	hi_noise {
 		hirit.postln;
 		^Tdef(\ck_hi).play;
 	}
