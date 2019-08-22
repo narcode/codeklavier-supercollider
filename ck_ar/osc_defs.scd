@@ -35,7 +35,7 @@ b[1] = ();	b[2] = ();	b[3] = ();	b[4] = (); b[5] = ();
 	b[5][i] = Buffer.read(s, ~path ++ "deep/" ++ i.asString ++ "_mono.wav");
 
 			~buses[i] = Bus.audio(s, 2);
-			~amps[i] = Synth(\busplay, [\bus, ~buses[i].index]).register;
+			~amps[i] = Synth(\busplay, [\bus, ~buses[i].index, \amp, 0.3]).register;
 			~delayamps[i] = 0.2;
 			~delaydecays[i] = 3;
 			~buses['rev'][i] = Bus.audio(s, 2);
@@ -149,7 +149,7 @@ OSCdef(\ckar, {arg msg;
 			var tree = ~view;
 			var rit = ~sub_division;
 
-			if (bank != 7) {f.delayCK.stop();};
+			if (bank != 7) {if (f.delayCK.isPlaying) {f.delayCK.stop();} };
 
 			~delaydecays[tree] = gen.linexp(2, 10, 0.5, 10);
 
@@ -201,7 +201,7 @@ OSCdef(\ckar, {arg msg;
 
 
 	OSCdef(\ckar1, {arg msg;
-("VIEW: " + msg).postln;
+			// ("VIEW: " + msg).postln;
 	~view = msg[1].asInt;
 	~view.postln;
 }, 'ckartreeview');
@@ -223,12 +223,13 @@ OSCdef(\ckar, {arg msg;
 OSCdef(\ckar3, {arg msg;
 var key = msg[1].asString.split($,);
 var tree = key[0].findRegexpAt("[0-9]+")[0];
-var amp = msg[2].linexp(0.12, 0.7, -24.dbamp, 0.dbamp);
+var keyval = key[0].findRegexp("[a-z]+")[0][1];
+var amp = msg[2].linexp(0.12, 0.7, -20.dbamp, 5.dbamp);
 
-			// ("tree: " ++ tree.asString ++ "amp: " ++ amp.asString).postln;
+			if (keyval == "vel") {
 ~amps[tree.asInteger].set(\amp, amp);
-
 ~delayamps[tree.asInteger] = msg[2].linexp(0.12, 0.7, -10.dbamp, 20.dbamp);
+			}
 
 }, 'ckarvalue');
 
@@ -238,17 +239,17 @@ var amp = msg[2].linexp(0.12, 0.7, -24.dbamp, 0.dbamp);
 	s.sync;
 
 // fx
-	~amps['rev'] = Synth(\busplay_reverb, [\bus, ~buses['rev'][1].index], addAction: 'addToTail').register;
+	~amps['rev'] = Synth(\busplay_reverb, [\bus, ~buses['rev'][1].index, \amp, 0.4], addAction: 'addToTail').register;
 	f = CkpianoFX(2, 0);
 	s.sync;
 	"\n************\n supercollider listening for sweet sweet L-sys and ready to eat chips \n************\n".postln;
 };
 
 /// notes:
-// - all have reverb? - DONE
-// - dynamics grab both - DONE
-// - connect reverb to transform -DONE
-// - machine aid for fx parameters -
 // predecessor fix -
-// generations are quantization -
+/// bug shape with collect -
+/// map transform -
+/// check reverb volume
+///
+
 
