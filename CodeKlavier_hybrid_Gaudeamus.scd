@@ -10,7 +10,8 @@ s.sync;
 MIDIIn.connectAll;
 s.sync;
 ~midisampler = MIDIOut.newByName("IAC Driver", "Bus 1"); // choose the correct MIDI device
-~midi = MIDIOut.newByName("USB MIDI Interface", "USB MIDI Interface"); // choose the correct MIDI device
+~midi = MIDIOut.newByName("Clavinova", "Clavinova"); // choose the correct MIDI device
+//~midi = MIDIOut.newByName("USB MIDI Interface", "USB MIDI Interface"); // choose the correct MIDI device
 //~midi = MIDIOut.newByName("YAMAHA USB Device", "Port1"); // choose the correct MIDI device
 s.sync;
 2.wait;
