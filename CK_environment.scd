@@ -145,7 +145,7 @@ Ndef(\gong, {0.9*FreeVerb.ar(Splay.ar(WhiteNoise.ar(Impulse.kr(0.2))+SinOsc.ar([
 ~stop.know = true;
 ~huygens.know = true;
 ~gong.know = true;
-~piano_gong = [23, 42, 35, 56, 67, 63, 81, 91, 100,103];
+~piano_gong = [23, 42, 35, 56, 67, 63, 81, 91, 100, 103];
 
 // hidden gong evaluation:
 OSCdef(\ck_gong, {|msg, time, addr, recvPort|
@@ -180,6 +180,18 @@ var chunk = msg[1].asFloat;
 Ndef(~names.next, {FreeVerb.ar(~amph*PlayBuf.ar(2, ~hugbuf, rate: [1, -1].choose, startPos: BufFrames.kr(~hugbuf)*(chunk/90)).sum*EnvGen.kr(Env.perc(0.1, ~sustain)), 0.5, 0.95)}).play([0,1].choose,1);
 ~sustain = ~sustain*1.1;
 }, '/huygens');
+
+OSCdef(\ck_pianostop, {|msg, time, addr, recvPort|
+if (msg[1] == 'stop123') {
+    ~piano.stop; ~piano2.stop; ~piano3.stop;
+    };
+if (msg[1] == 'stop12') {
+    ~piano.stop; ~piano2.stop;
+    };
+if (msg[1] == 'stop1') {
+    ~piano.stop;
+    };
+}, '/pianostop');
 
 // OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
 //     msg.postln;

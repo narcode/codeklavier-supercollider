@@ -7,7 +7,7 @@ s.waitForBoot({
 	"starting server...".postln;
 
 ~ts = TempoClock.new();
-~ts.tempo = 20/60;
+~ts.tempo = 60/60;
 s.sync;
 // snippet 1: beat
 /*r = ();*/
@@ -27,6 +27,7 @@ s.sync;
 ~tremoloM1 = 6;
 ~tremoloM2 = 1;
 ~tremoloM3 = 1;
+~tremoloM4 = 1;
 ~tremoloH1 = 2;
 ~tremoloH2 = 1;
 ~rit = 0.1;
@@ -43,12 +44,13 @@ Tdef(\listenerkr, {
   loop{
 
 // sampler
-	if (~map_amp_ost == true) { ~ostamp = ~tremoloM1.linlin(1, 20, 0.01, 1); }; // rit
-	if (~map_amp_tp == true) { ~amp_tp = ~tremoloM1.linlin(1, 16, 0.01, 1.5); }; // rit
-	if (~map_amp_org == true) { ~amp_org = ~tremoloM3.linlin(1, 16, 0.1, 10); }; // rit
+	if (~map_amp_ost == true) { ~ostamp = ~tremoloM1.linlin(1, 20, 0.01, 1); };
+	if (~map_amp_tp == true) { ~amp_tp = ~tremoloM1.linlin(1, 16, 0.01, 1.5); };
+	if (~map_amp_org == true) { ~amp_org = ~tremoloM3.linlin(1, 16, 0.1, 10); };
+	if (~map_amp_pno == true) { ~pnoamp = ~tremoloM4.linlin(1, 16, 0.02, 1.2); };
 // snippet 1
-	if (~map_rhythm == true) { Ndef(\krm1_r, {~tremoloL1.linlin(1, 16, 1/2, 18)}) }; // rit
-	if (~map_amplitude == true) { Ndef(\krm1_a, {~tremoloL1amp.linlin(1, 16, 0.01, 1)}); }; //amp
+	if (~map_rhythm == true) { Ndef(\krm1_r, {~tremoloL1.linlin(1, 16, 1/2, 18)}) };
+	if (~map_amplitude == true) { Ndef(\krm1_a, {~tremoloL1amp.linlin(1, 16, 0.01, 1)}); };
     Ndef(\krm1_d, {~tremoloH1.linlin(1, 16, 1, 40)}); // decay
 
 
@@ -56,7 +58,6 @@ Tdef(\listenerkr, {
     Ndef(\krm2_1, {~tremoloM2.linlin(1, 16, 180, 800)}); // pitch
     Ndef(\krm2_2, {~tremoloL2.linlin(1, 16, 0, 1.5)}); // amp
     Ndef(\krm2_3, {~tremoloH2.linlin(1, 16, 0, 15)}); // fx
-
 // tempo
 
 	// if (~t != ~t) {
