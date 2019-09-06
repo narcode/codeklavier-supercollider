@@ -7,7 +7,7 @@ s.waitForBoot({
 	"starting server...".postln;
 
 ~ts = TempoClock.new();
-~ts.tempo = 60/60;
+~ts.tempo = 1;
 s.sync;
 // snippet 1: beat
 /*r = ();*/
@@ -60,15 +60,7 @@ Tdef(\listenerkr, {
     Ndef(\krm2_3, {~tremoloH2.linlin(1, 16, 0, 15)}); // fx
 // tempo
 
-	// if (~t != ~t) {
-	// Tdef(\tempochange, {
-	// 	var frame = Array.fill()
-	// 	t.tempo = ~t;
-	//
-	// 	}).play;
-	// }
-
-    0.08.wait;
+    0.25.wait;
     }
 }).play(~ts);
 
