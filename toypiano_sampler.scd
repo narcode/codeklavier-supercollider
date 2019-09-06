@@ -93,36 +93,36 @@ if (midinote < 64 && midinote >= 0) {
                 }
               }, chan: 4, srcID: ~srcid);
 
-        // channel 5 (organ):
-        //     MIDIdef.noteOn(\5, {arg ...args;
-        //   var midinote = args[1]-~midiBufferOffset;
-        //   // args.postln;
-        //   // (midinote+24).postln;
-        //
-        // if (midinote >= 0) {
-        //     Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], ~headG);
-        //     }
-        //   }, chan: 5, srcID: ~srcid);
-        //
-        //   // channel 6 (organ):
-        //   MIDIdef.noteOn(\6, {arg ...args;
-        //     var midinote = args[1]-~midiBufferOffset;
-        //
-        //   if (midinote >= 0) {
-        //       Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], ~headG);
-        //       Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 6, \rl, ~od1*2], ~headG);
-        //       }
-        //     }, chan: 6, srcID: ~srcid);
-        //
-        //     // channel 7 (organ):
-        //     MIDIdef.noteOn(\7, {arg ...args;
-        //       var midinote = args[1]-~midiBufferOffset;
-        //
-        //     if (midinote >= 0) {
-        //         Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], ~headG);
-        //         Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 8, \rl, ~od1*2], ~headG);
-        //         }
-        //       }, chan: 7, srcID: ~srcid);
+        //channel 5 (organ):
+            MIDIdef.noteOn(\5, {arg ...args;
+          var midinote = args[1]-~midiBufferOffset;
+          // args.postln;
+          // (midinote+24).postln;
+
+        if (midinote >= 0) {
+            Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], ~headG);
+            }
+          }, chan: 5, srcID: ~srcid);
+
+          // channel 6 (organ):
+          MIDIdef.noteOn(\6, {arg ...args;
+            var midinote = args[1]-~midiBufferOffset;
+
+          if (midinote >= 0) {
+              Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], ~headG);
+              Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 6, \rl, ~od1*2], ~headG);
+              }
+            }, chan: 6, srcID: ~srcid);
+
+            // channel 7 (organ):
+            MIDIdef.noteOn(\7, {arg ...args;
+              var midinote = args[1]-~midiBufferOffset;
+
+            if (midinote >= 0) {
+                Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 0, \rl, ~od1*2], ~headG);
+                Synth(\ck_sampler, [\amp, ~amp_org, \buffer, midinote, \out, 8, \rl, ~od1*2], ~headG);
+                }
+              }, chan: 7, srcID: ~srcid);
 
 s.sync;
 "Toy piano sampler ready!".postln;
