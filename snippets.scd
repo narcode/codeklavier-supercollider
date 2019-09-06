@@ -27,7 +27,7 @@ s.sync;
 ~tremoloM1 = 6;
 ~tremoloM2 = 1;
 ~tremoloM3 = 1;
-~tremoloM4 = 1;
+~tremoloM4 = 3;
 ~tremoloH1 = 2;
 ~tremoloH2 = 1;
 ~rit = 0.1;
