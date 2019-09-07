@@ -193,6 +193,18 @@ if (msg[1] == 'stop1') {
     };
 }, '/pianostop');
 
+OSCdef(\ck_pianoplay, {|msg, time, addr, recvPort|
+if (msg[1] == 'play12') {
+    ~piano2.play; ~piano.play
+    };
+if (msg[1] == 'play123') {
+    ~piano3.play; ~piano2.play; ~piano.play;
+    };
+if (msg[1] == 'playwild') {
+    ~ost.play; a=b=8; c=i=12; ~op1=1; ~ost2.play; g=h=6; ~down2=1;
+    };
+}, '/pianostop');
+
 // OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
 //     msg.postln;
 //     if (msg[1] == 'text1') {
