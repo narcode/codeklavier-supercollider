@@ -149,7 +149,7 @@ OSCdef(\ckar, {arg msg;
 			var tree = ~view;
 			var rit = ~sub_division;
 
-			if (bank != 7) {if (f.delayCK.isPlaying) {f.delayCK.stop();} };
+			if (bank != 1) {if (f.delayCK.isPlaying) {f.delayCK.stop();} };
 
 			~delaydecays[tree] = gen.linexp(2, 10, 0.5, 10);
 
