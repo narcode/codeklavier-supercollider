@@ -162,7 +162,7 @@ OSCdef(\ckar, {arg msg;
 					};
 
 			switch(bank,
-				1, {~amps['rev'].set(\bus, ~buses['rev'][1]); ~amps[tree].set(\out, ~buses['rev'][1]);
+				7, {~amps['rev'].set(\bus, ~buses['rev'][1]); ~amps[tree].set(\out, ~buses['rev'][1]);
 							if (~drones[tree].isPlaying) {~drones[tree].set(\midinote, ~oct_scale[num], \note, num, \amp, 1)} {
 							t.sched(1, ~drones[tree] = Synth(\bank_drone, [\out, ~buses[tree].index, \midinote, ~oct_scale[num], \amp, 1, \eqfreq, 80, \note, num, \noise, 1, \rate, 3]).register;);
 						}
@@ -179,16 +179,14 @@ OSCdef(\ckar, {arg msg;
 						4, {~amps[tree].set(\out, ~r_out[tree]); if (num == 0) {amp = 0} {amp = 1}; t.sched(1,
 							Synth(\bank_samples_stereo, [\out, ~buses[tree].index, \amp, amp, \buffer, b[1][num]]); );
 						},
-				//3, {rit = 4; if (d.isPlaying) {d.set(\note, num)} {d = Synth(\bank_drone3, [\out, 2, \midinote, 14, \amp,0.3, \note, num]).register;} },
 				5, {~amps[tree].set(\out, ~r_out[tree]); if (num == 0) {amp = 0} {amp = 1}; t.sched(1,
 								Synth(\bank1, [\out, ~buses[tree].index, \eqfreq, [100,345,543,657,789,987,2345,3456,6567][num-1], \amp, amp, \rl, rit[gen], \ratio, num, \rate, num]);
 						)
-						}, // low generation == whistle
-				//3, {if (num == 0) {amp = 0} {amp = 4}; rit = 1/2; Synth(\bank_samples, [\amp, amp, \buffer, b[2][num], \rl, 1.rrand(5)*rit, \pos, -1.rrand(1.0)])},
+						},
 				6, {~amps[tree].set(\out, ~r_out[tree]); if (num == 0) {amp = 0} {amp = 0.7}; t.sched(1,
 							Synth(\bank_samples, [\out, ~buses[tree].index, \rl, rit[gen], \rate, 1, \amp, amp, \buffer, b[4][num], \pos, -1.rrand(1.0)]); );
 						},
-						7, { f.delayCK(~delayamps[tree], ~delaywindow[tree], ~delaydecays[tree]); }
+						1, { f.delayCK(~delayamps[tree], ~delaywindow[tree], ~delaydecays[tree]); }
 			);
 
 					(rit[gen]).wait;
@@ -228,7 +226,7 @@ var amp = msg[2].linexp(0.12, 0.7, -20.dbamp, 5.dbamp);
 
 			if (keyval == "vel") {
 ~amps[tree.asInteger].set(\amp, amp);
-~delayamps[tree.asInteger] = msg[2].linexp(0.12, 0.7, -10.dbamp, 20.dbamp);
+~delayamps[tree.asInteger] = msg[2].linexp(0.12, 0.7, -15.dbamp, 6.dbamp);
 			}
 
 }, 'ckarvalue');
@@ -240,7 +238,7 @@ var amp = msg[2].linexp(0.12, 0.7, -20.dbamp, 5.dbamp);
 
 // fx
 	~amps['rev'] = Synth(\busplay_reverb, [\bus, ~buses['rev'][1].index, \amp, 0.4], addAction: 'addToTail').register;
-	f = CkpianoFX(2, 0);
+	f = CkpianoFX(0, 0);
 	s.sync;
 	"\n************\n supercollider listening for sweet sweet L-sys and ready to eat chips \n************\n".postln;
 };
@@ -251,5 +249,4 @@ var amp = msg[2].linexp(0.12, 0.7, -20.dbamp, 5.dbamp);
 /// map transform -
 /// check reverb volume
 ///
-
 
