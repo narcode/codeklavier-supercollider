@@ -191,10 +191,12 @@ if (msg[1] == 'stop12') {
 if (msg[1] == 'stop1') {
     ~piano.stop;
     };
-}, "/pianostop");
+if (msg[1] == 'stoposts') {
+    ~ost.stop; ~ost2.stop; ~ost3.stop;
+    };
+}, '/pianostop');
 
-OSCdef(\ck_pianoplay, {|msg, ticondition not met :(
-me, addr, recvPort|
+OSCdef(\ck_pianoplay, {|msg, time, addr, recvPort|
 if (msg[1] == 'play12') {
     ~piano2.play; ~piano.play
     };
@@ -202,9 +204,13 @@ if (msg[1] == 'play123') {
     ~piano3.play; ~piano2.play; ~piano.play;
     };
 if (msg[1] == 'playwild') {
-    ~ost.play; a=b=8; c=i=12; ~op1=1; ~ost2.play; g=h=6; ~down2=1;
+    ~ost.play; a=b=10; c=i=14; ~op1=1; ~ost2.play; g=h=8; ~down2=1;
     };
-}, "/pianoplay");
+//if (msg[1] == 'playdouble) {
+  //  a = a*2; b = b*2; c = c*2; g = g*2; h = h*2; i = i*2; k = k*2; l = l*2; m = m*2;
+  // };
+}, '/pianoplay');
+
 
 // OSCdef(\ck_presenter, {|msg, time, addr, recvPort|
 //     msg.postln;

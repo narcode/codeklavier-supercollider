@@ -93,7 +93,7 @@ s.sync;
 ~od1=~od2=~od3=2;
 ~o1=~o2=~o3=0;
 s.sync;
-a=b=c=g=h=i=k=l=m=1;
+a=b=c=g=h=i=k=l=m=2;
 s.sync;
 ~reset = Tdef(\reset, {1.do{
 	a=b=c=g=h=i=k=l=m=1; t.tempo=1;
