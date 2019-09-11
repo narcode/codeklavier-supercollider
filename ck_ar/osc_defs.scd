@@ -238,7 +238,7 @@ var amp = msg[2].linexp(0.12, 0.7, -20.dbamp, 5.dbamp);
 
 // fx
 	~amps['rev'] = Synth(\busplay_reverb, [\bus, ~buses['rev'][1].index, \amp, 0.4], addAction: 'addToTail').register;
-	f = CkpianoFX(0, 0);
+	f = CkpianoFX(0, 4);
 	s.sync;
 	"\n************\n supercollider listening for sweet sweet L-sys and ready to eat chips \n************\n".postln;
 };
