@@ -44,10 +44,10 @@ Tdef(\listenerkr, {
   loop{
 
 // sampler
-	if (~map_amp_ost == true) { ~ostamp = ~tremoloM1.linlin(1, 20, 0.01, 1); };
+	if (~map_amp_ost == true) { ~ostamp = ~tremoloM1.linlin(1, 20, 0.1, 1); };
 	if (~map_amp_tp == true) { ~amp_tp = ~tremoloM1.linlin(1, 16, 0.01, 1.5); };
 	if (~map_amp_org == true) { ~amp_org = ~tremoloM3.linlin(1, 16, 0.1, 10); };
-	if (~map_amp_pno == true) { ~pnoamp = ~tremoloM4.linlin(1, 16, 0.02, 1.2); };
+	if (~map_amp_pno == true) { ~pnoamp = ~tremoloM4.linlin(1, 16, 0.1, 2); };
 // snippet 1
 	if (~map_rhythm == true) { Ndef(\krm1_r, {~tremoloL1.linlin(1, 16, 1/2, 18)}) };
 	if (~map_amplitude == true) { Ndef(\krm1_a, {~tremoloL1amp.linlin(1, 16, 0.01, 1)}); };
