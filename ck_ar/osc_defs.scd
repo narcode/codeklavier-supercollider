@@ -250,3 +250,5 @@ var amp = msg[2].linexp(0.12, 0.7, -20.dbamp, 5.dbamp);
 /// check reverb volume
 ///
 
+//s.reboot;
+//NetAddr.langPort
