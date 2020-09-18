@@ -1,24 +1,29 @@
 ~view = 1;
 ~legato = ();
-7.do{|l| ~legato[l+1] = 1};
+~root = ();
+10.do{|l| ~legato[l+1] = 1};
 ~chn = ();
 10.do{|ch| ~chn[ch+1] = ch};
+
+10.do{|t| ~root[t+1] = 0};
 
 t.tempo_(30/60);
 
 (
 OSCdef(\ckar, {arg msg;
 var contents = msg[~view].asString.split($,);
-var tree = contents[0].findRegexpAt("[0-9]")[0].asInt;
+var tree = contents[0].findRegexpAt("[0-9]")[0].asInteger;
 var seq = contents[0].findRegexpAt("[0-9]+", 2);
-var shape = contents[0].findRegexp("S.")[0][1].findRegexp("[0-9]")[0][1].asInt;
-var gen = contents[0].findRegexp("G.*S")[0][1].findRegexp("[0-9]+")[0][1].asInt;
-var leaves = seq[1].asInt;
+var shape = contents[0].findRegexp("S.")[0][1].findRegexp("[0-9]")[0][1].asInteger;
+var gen = contents[0].findRegexp("G.*S")[0][1].findRegexp("[0-9]+")[0][1].asInteger;
+var leaves = seq[1].asInteger;
 var offset=36;
 var list=[];
 var pattern;
+var notes = [];
+var subdiv;
 
-	seq = seq[0].findRegexp("[0-9]").flop.at(1).asInt;
+	seq = seq[0].findRegexp("[0-9]").flop.at(1).asInteger;
 
 	("tree: " ++ tree).postln;
 	("contents: " ++ contents).postln;
@@ -33,29 +38,37 @@ pattern = seq.collect{ arg item,index;
 	if (item == 0) {
 		0;
 	} {
-			if ((~chn[tree] >= 2) && (~chn[tree] <= 5)) {
-				if (gen < 5) {
+			if ((~chn[tree] >= 3) && (~chn[tree] <= 5)) {
+/*				if (gen < 5) {
 					item + 35;
-				} {
-					(item * 2) + 35;
-				}
+				} {*/
+					(item + (gen-1)) + 37;
+			// }
 
 			} {
-				(item * gen) + 35;
+				(item*4) + (gen*4) + 35;
 			}
 	}
 };
 
 pattern.postln;
-("channel: " ++ ~chn[tree]).postln;
+pattern.collect{|e| notes.add(e.midiname)};
+notes.postln;
 
-Pdef(("fokker_"++~chn[tree]).asSymbol, {Pbind(\dur, Pseq([1/shape], inf), \stepsPerOctave, 31, \midinote, Pseq(pattern, inf), \legato, Pfunc{(1/shape)*~legato[tree]}, \chan, Pfunc{~chn[tree]}, \type, \midi, \midiout, m)}).play;
+if (seq.size > 4) {
+		subdiv = shape+(seq.size-1).clip(0,8);
+	} {
+		subdiv = shape;
+	};
+
+("channel: " ++ ~chn[tree]).postln;
+Pdef(("fokker_"++~chn[tree]).asSymbol, {Pbind(\dur, Pseq([1/subdiv], inf), \stepsPerOctave, 31, \midinote, Pseq(pattern, inf), \ctranspose, Pfunc{~root[tree]},\legato, Pfunc{~legato[tree]}, \chan, Pfunc{~chn[tree]}, \type, \midi, \midiout, m)}).play;
 
 }, 'ckartree');
 
 OSCdef(\ckar1, {arg msg;
 	("VIEW: " + msg[1]).postln;
-	~view = msg[1].asInt;
+	~view = msg[1].asInteger;
 }, 'ckartreeview');
 
 
@@ -72,8 +85,8 @@ var keyval = key[0].findRegexp("[a-z]+")[0][1];
 	if (keyval == "speed") {
 /*		msg[2].postln;*/
 		// ~legato = msg[2].clip(0.1, 4);
-		~legato[tree.asInt] = msg[2].linlin(0.06, 1.5, 0.1, 4);
-		~legato[tree.asInt].postln;
+		~legato[tree.asInteger] = msg[2].linlin(0.06, 1.5, 0.1, 4);
+		~legato[tree.asInteger].postln;
 		}
 
 }, 'ckarvalue');
@@ -82,8 +95,9 @@ var keyval = key[0].findRegexp("[a-z]+")[0][1];
 OSCdef(\ckar2, {arg msg;
 			var key = msg[1].asString.split($,);
 			var tree = key[0].findRegexpAt("[0-9]+")[0];
-			var room = msg[2].linlin(-1, 1, 1, 30);
+			var root = msg[2];
 
+	~root[tree.asInteger] = root.asInteger;
 			msg.postln;
 }, 'ckartreetransform');
 
