@@ -61,7 +61,7 @@ msg.do{|contents, i|
 		} {
 			subdiv = shape;
 		};
-Pdef.gui
+
 		("channel: " ++ ~chn[tree]).postln;
 		Pdef(("fokker_"++~chn[tree]).asSymbol, {Pbind(\dur, Pseq([1/subdiv], inf), \stepsPerOctave, 31, \midinote, Pseq(pattern, inf), \ctranspose, Pfunc{~root[tree]},\legato, Pfunc{~legato[tree]}, \chan, Pfunc{~chn[tree]}, \type, \midi, \midiout, m)}).play;
 		}.fork;
