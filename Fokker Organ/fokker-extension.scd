@@ -11,59 +11,61 @@ t.tempo_(30/60);
 
 (
 OSCdef(\ckar, {arg msg;
-var contents = msg[~view].asString.split($,);
-var tree = contents[0].findRegexpAt("[0-9]")[0].asInteger;
-var seq = contents[0].findRegexpAt("[0-9]+", 2);
-var shape = contents[0].findRegexp("S.")[0][1].findRegexp("[0-9]")[0][1].asInteger;
-var gen = contents[0].findRegexp("G.*S")[0][1].findRegexp("[0-9]+")[0][1].asInteger;
-var leaves = seq[1].asInteger;
-var offset=36;
-var list=[];
-var pattern;
-var notes = [];
-var subdiv;
+msg.removeAt(0);
+msg.do{|contents, i|
+		{
+		var tree = contents.asString.findRegexpAt("[0-9]")[0].asInteger;
+		var seq = contents.asString.findRegexpAt("[0-9]+", 2);
+		var shape = contents.asString.findRegexp("S.")[0][1].findRegexp("[0-9]")[0][1].asInteger;
+		var gen = contents.asString.findRegexp("G.*S")[0][1].findRegexp("[0-9]+")[0][1].asInteger;
+		var leaves = seq[1].asInteger;
+		var offset=36;
+		var list=[];
+		var pattern;
+		var notes = [];
+		var subdiv;
+		// ("contents in " ++ contents).postln;
+		seq = seq[0].findRegexp("[0-9]").flop.at(1).asInteger;
+		("******************************").postln;
+		("******************************").postln;
+		("tree: " ++ tree).postln;
+		("contents: " ++ contents).postln;
+		("seq: " ++ seq).postln;
+		("leaves: " ++ leaves).postln;
+		("shape: " ++ shape).postln;
+		("gen: " ++ gen).postln;
 
-	seq = seq[0].findRegexp("[0-9]").flop.at(1).asInteger;
-
-	("tree: " ++ tree).postln;
-	("contents: " ++ contents).postln;
-	("seq: " ++ seq).postln;
-	("leaves: " ++ leaves).postln;
-	("shape: " ++ shape).postln;
-	("gen: " ++ gen).postln;
-
-msg.postln;
-
-pattern = seq.collect{ arg item,index;
-	if (item == 0) {
-		0;
-	} {
-			if ((~chn[tree] >= 3) && (~chn[tree] <= 5)) {
-/*				if (gen < 5) {
-					item + 35;
-				} {*/
-					(item + (gen-1)) + 37;
-			// }
-
+		pattern = seq.collect{ arg item,index;
+			if (item == 0) {
+				0;
 			} {
-				(item*4) + (gen*4) + 35;
+				if ((~chn[tree] >= 3) && (~chn[tree] <= 5)) {
+					/*				if (gen < 5) {
+					item + 35;
+					} {*/
+					(item + (gen-1)) + 37;
+					// }
+
+				} {
+					(item*4) + (gen*4) + 35;
+				}
 			}
-	}
-};
+		};
 
-pattern.postln;
-pattern.collect{|e| notes.add(e.midiname)};
-notes.postln;
+		pattern.postln;
+		// pattern.collect{|e| notes.add(e.midiname)};
+		// notes.postln;
 
-if (seq.size > 4) {
-		subdiv = shape+(seq.size-1).clip(0,8);
-	} {
-		subdiv = shape;
-	};
-
-("channel: " ++ ~chn[tree]).postln;
-Pdef(("fokker_"++~chn[tree]).asSymbol, {Pbind(\dur, Pseq([1/subdiv], inf), \stepsPerOctave, 31, \midinote, Pseq(pattern, inf), \ctranspose, Pfunc{~root[tree]},\legato, Pfunc{~legato[tree]}, \chan, Pfunc{~chn[tree]}, \type, \midi, \midiout, m)}).play;
-
+		if (seq.size > 4) {
+			subdiv = shape+(seq.size-1).clip(0,8);
+		} {
+			subdiv = shape;
+		};
+Pdef.gui
+		("channel: " ++ ~chn[tree]).postln;
+		Pdef(("fokker_"++~chn[tree]).asSymbol, {Pbind(\dur, Pseq([1/subdiv], inf), \stepsPerOctave, 31, \midinote, Pseq(pattern, inf), \ctranspose, Pfunc{~root[tree]},\legato, Pfunc{~legato[tree]}, \chan, Pfunc{~chn[tree]}, \type, \midi, \midiout, m)}).play;
+		}.fork;
+	} // iteration loop
 }, 'ckartree');
 
 OSCdef(\ckar1, {arg msg;
