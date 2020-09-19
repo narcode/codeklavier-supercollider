@@ -1,4 +1,4 @@
-//// FOKK MY OFF<>ZZ SETUP
+//// FOCKKER ORGAN SETUP
 
 MIDIClient.init;
 
