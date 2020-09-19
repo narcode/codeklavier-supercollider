@@ -1,15 +1,17 @@
 //// FOCKKER ORGAN SETUP
-
+s.waitForBoot{
+{
 MIDIClient.init;
-
+s.sync;
 m = MIDIOut.newByName("MIDIMATE II", "Port 1");
 //f = MIDIOut.newByName("MIDIMATE II", "Port 1");   /// test midi outs
 MIDIIn.connectAll;
+s.sync;
 // The IAC Bus will now also appear to other applications.
+s.sync;
 
-MIDIdef.noteOn(\test1, {arg ...args; args.postln});
-
-
+//MIDIdef.noteOn(\test1, {arg ...args; args.postln});
+/*
 //start
 // mini test
 m.noteOn(0, 39, 127);
@@ -61,48 +63,52 @@ m.program(0, 16);
 // channels:
 0-2: manual I
 3-5: pedal
-6-9: manual II
+6-9: manual II*/
 
 
 // MIDI mapping to registers...
 MIDIdef.cc(\register, {arg ...args;
-	if (args[1] == 41) {//Subbas16’
-		if (args[2] > 50 ) { m.program(0, 0); } { m.program(0, 1); };
+	if (args[2] == 41) {//Subbas16’
+		if (args[1] > 50 ) { m.program(0, 0); } { m.program(0, 1); };
 	};
 
-	if (args[1] == 42) {//Gedekt8’
-		if (args[2] > 50 ) { m.program(0, 2); } { m.program(0, 3); };
+	if (args[2] == 42) {//Gedekt8’
+		if (args[1] > 50 ) { m.program(0, 2); } { m.program(0, 3); };
 	};
 
-	if (args[1] == 43) {//P+I
-		if (args[2] > 50 ) { m.program(0, 4); } { m.program(0, 5); };
+	if (args[2] == 43) {//P+I
+		if (args[1] > 50 ) { m.program(0, 4); } { m.program(0, 5); };
 	};
 
-	if (args[1] == 44) {//P+II
-		if (args[2] > 50 ) { m.program(0, 6); } { m.program(0, 7); };
+	if (args[2] == 44) {//P+II
+		if (args[1] > 50 ) { m.program(0, 6); } { m.program(0, 7); };
 	};
 
-	if (args[1] == 45) {//Quintadena 8’
-		if (args[2] > 50 ) { m.program(0, 8); } { m.program(0, 9); };
+	if (args[2] == 45) {//Quintadena 8’
+		if (args[1] > 50 ) { m.program(0, 8); } { m.program(0, 9); };
 	};
 
-	if (args[1] == 46) {//Prestant 4’
-		if (args[2] > 50 ) { m.program(0, 10); } { m.program(0, 11); };
+	if (args[2] == 46) {//Prestant 4’
+		if (args[1] > 50 ) { m.program(0, 10); } { m.program(0, 11); };
 	};
 
-	if (args[1] == 47) {//I+II
-		if (args[2] > 50 ) { m.program(0, 12); } { m.program(0, 13); };
+	if (args[2] == 47) {//I+II
+		if (args[1] > 50 ) { m.program(0, 12); } { m.program(0, 13); };
 	};
 
-	if (args[1] == 48) {//Salicionaal 8’
-		if (args[2] > 50 ) { m.program(0, 14); } { m.program(0, 15); };
+	if (args[2] == 48) {//Salicionaal 8’
+		if (args[1] > 50 ) { m.program(0, 14); } { m.program(0, 15); };
 	};
 
-	if (args[1] == 49) {//Roerfluit 4’
-		if (args[2] > 50 ) { m.program(0, 16); } { m.program(0, 17); };
+	if (args[2] == 49) {//Roerfluit 4’
+		if (args[1] > 50 ) { m.program(0, 16); } { m.program(0, 17); };
 	};
 
 });
+
+s.sync;
+		}.fork;
+};
 
 
 
