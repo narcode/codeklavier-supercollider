@@ -64,7 +64,7 @@ m.program(0, 16);
 6-9: manual II
 
 
-// MIDI mapping to registers
+// MIDI mapping to registers...
 MIDIdef.cc(\register, {arg ..args;
 	if (args[1] == 41) {//Subbas16’
 		if (args[2] > 50 ) { m.program(0, 0); } { m.program(0, 1); };
@@ -103,5 +103,6 @@ MIDIdef.cc(\register, {arg ..args;
 	}
 
 });
+
 
 
