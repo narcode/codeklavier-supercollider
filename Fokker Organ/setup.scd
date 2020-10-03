@@ -5,7 +5,7 @@ MIDIClient.init;
 s.sync;
 m = MIDIOut.newByName("MIDIMATE II", "Port 1");
 //f = MIDIOut.newByName("MIDIMATE II", "Port 1");   /// test midi outs
-MIDIIn.connectAll;
+MIDIIn.connect(0, 5);
 s.sync;
 // The IAC Bus will now also appear to other applications.
 s.sync;
@@ -67,42 +67,47 @@ m.program(0, 16);
 
 2.wait;
 // MIDI mapping to registers...
-MIDIdef.cc(\register, {arg ...args;
-	if (args[1] == 41) {//Subbas16’
-		if (args[0] > 50 ) { m.program(0, 0); } { m.program(0, 1); };
+MIDIdef.noteOn(\register, {arg ...args;
+			args.postln;
+	if (args[1] == 60) {//Subbas16’
+		m.program(0, 0);
 	};
 
-	if (args[1] == 42) {//Gedekt8’
-		if (args[0] > 50 ) { m.program(0, 2); } { m.program(0, 3); };
-	};
+			if (args[1] == 61) {
+				m.program(0, 1);
+			};
 
-	if (args[1] == 43) {//P+I
-		if (args[0] > 50 ) { m.program(0, 4); } { m.program(0, 5); };
-	};
+	if (args[1] == 62) {//Gedekt8’
+	 m.program(0, 2); };
+	if (args[1]==63) { m.program(0, 3); };
 
-	if (args[1] == 44) {//P+II
-		if (args[0] > 50 ) { m.program(0, 6); } { m.program(0, 7); };
-	};
+	if (args[1] == 65) {//P+I
+ m.program(0, 4); };
+			if (args[1]==66) {m.program(0, 5)};
 
-	if (args[1] == 45) {//Quintadena 8’
-		if (args[0] > 50 ) { m.program(0, 8); } { m.program(0, 9); };
-	};
+	if (args[1] == 67) {//P+II
+				m.program(0, 6); };
+			if (args[1]==68) {m.program(0, 7);};
 
-	if (args[1] == 46) {//Prestant 4’
-		if (args[0] > 50 ) { m.program(0, 10); } { m.program(0, 11); };
-	};
+	if (args[1] == 69) {//Quintadena 8’
+		m.program(0, 8); };
+			if (args[1]==70) { m.program(0, 9); };
 
-	if (args[1] == 47) {//I+II
-		if (args[0] > 50 ) { m.program(0, 12); } { m.program(0, 13); };
-	};
+	if (args[1] == 72) {//Prestant 4’
+		m.program(0, 10); };
+			if (args[1]==73) { m.program(0, 11); };
 
-	if (args[1] == 48) {//Salicionaal 8’
-		if (args[0] > 50 ) { m.program(0, 14); } { m.program(0, 15); };
-	};
+	if (args[1] == 74) {//I+II
+				m.program(0, 12); };
+			if (args[1]==75) { m.program(0, 13); };
 
-	if (args[1] == 49) {//Roerfluit 4’
-		if (args[0] > 50 ) { m.program(0, 16); } { m.program(0, 17); };
-	};
+	if (args[1] == 77) {//Salicionaal 8’
+		m.program(0, 14); };
+			if (args[1]==78) { m.program(0, 15); };
+
+	if (args[1] == 79) {//Roerfluit 4’
+				m.program(0, 16); };
+			if (args[1]==80) { m.program(0, 17); };
 
 });
 
