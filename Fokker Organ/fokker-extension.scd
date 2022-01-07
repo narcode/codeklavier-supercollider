@@ -4,9 +4,8 @@
 10.do{|l| ~legato[l+1] = 1};
 ~chn = ();
 10.do{|ch| ~chn[ch+1] = ch};
-
 10.do{|t| ~root[t+1] = 0};
-
+Pdef.all.do{|p| p.free};
 t.tempo_(30/60);
 
 (
