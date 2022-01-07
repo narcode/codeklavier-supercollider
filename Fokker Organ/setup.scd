@@ -3,7 +3,7 @@ s.waitForBoot{
 {
 MIDIClient.init;
 s.sync;
-m = MIDIOut.newByName("MIDIMATE II", "Port 1");
+m = MIDIOut.newByName("USB MIDI Interface", "USB MIDI Interface");
 //f = MIDIOut.newByName("MIDIMATE II", "Port 1");   /// test midi outs
 MIDIIn.connectAll;
 s.sync;
@@ -109,6 +109,3 @@ MIDIdef.cc(\register, {arg ...args;
 s.sync;
 		}.fork;
 };
-
-
-

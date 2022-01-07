@@ -32,7 +32,7 @@ b[1] = ();	b[2] = ();	b[3] = ();	b[4] = (); b[5] = ();
 	b[2][i] = Buffer.read(s, ~path ++ "808hh/" ++ i.asString ++ ".wav");
 	b[3][i] = Buffer.read(s, ~path ++ "808sd/" ++ i.asString ++ ".wav");
 	b[4][i] = Buffer.read(s, ~path ++ "nasa/" ++ i.asString ++ "_mono.wav");
-	b[5][i] = Buffer.read(s, ~path ++ "deep/" ++ i.asString ++ "_mono.wav");
+/*	b[5][i] = Buffer.read(s, ~path ++ "deep/" ++ i.asString ++ "_mono.wav");*/
 
 			~buses[i] = Bus.audio(s, 2);
 			~amps[i] = Synth(\busplay, [\bus, ~buses[i].index, \amp, 0.3]).register;
